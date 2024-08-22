@@ -1,5 +1,8 @@
 name: Generate RCENet library (prod)
 
+permissions:
+  contents: write
+
 on:
   release:
     types:
