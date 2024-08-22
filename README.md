@@ -18,7 +18,7 @@
 ## 🛠 Tech Stack
 - C (Language)
 - CI / CD (Github Actions)
-- CMake and xMake (Build script)
+- xMake (Build script)
 - Compiler (GCC, CL, Clang, Ninja, NDK)
 
 <br /><br /><br /><br />
