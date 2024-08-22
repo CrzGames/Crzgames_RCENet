@@ -25,7 +25,7 @@
 
 
 ## 📋 Supported platforms :
-Ensuring that your game runs smoothly requires understanding the minimal system requirements for each platform. Below are the requirements that users need to meet to experience your game without issues.
+Ensuring that your game runs smoothly requires understanding the minimal system requirements for each platforms. Below are the requirements that users need to meet to experience your game without issues.
 
 | Platform | Architectures | System Version | Compatible |
 |----------|---------------|----------------|------------|
