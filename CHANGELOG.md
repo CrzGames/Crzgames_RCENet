@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.0...v1.0.1) (2024-08-22)
+
+
+### Bug Fixes
+
+* add permission in ci ([21f6430](https://github.com/CrzGames/Crzgames_RCENet/commit/21f6430e1c124a8b607dd6f195c3a39b2644345f))
+
 ## 1.0.0 (2024-08-22)
 
 
