@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.3...v1.1.0) (2024-08-23)
+
+
+### Features
+
+* add target minver for tvos ([60c3228](https://github.com/CrzGames/Crzgames_RCENet/commit/60c3228114455f9c2fb56ac2631b0bb8a2137f44))
+* add target minver for tvos for production ([f52341a](https://github.com/CrzGames/Crzgames_RCENet/commit/f52341ad51572b9c49f1b0e859574b8a428ff23b))
+
 ## [1.0.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.2...v1.0.3) (2024-08-23)
 
 
