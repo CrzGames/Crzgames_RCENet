@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.2...v1.0.3) (2024-08-23)
+
+
+### Bug Fixes
+
+* rename directory tvos ([49f38a1](https://github.com/CrzGames/Crzgames_RCENet/commit/49f38a16310fc315b18897f472d0b52181d2574a))
+
+
+### Performance Improvements
+
+* reorder assets github ([a057b16](https://github.com/CrzGames/Crzgames_RCENet/commit/a057b1671cbe03ce57622a56c058d4f5a168c4d5))
+
 ## [1.0.2](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.1...v1.0.2) (2024-08-22)
 
 
