@@ -387,10 +387,10 @@ jobs:
             librcenet-mingw.zip
             librcenet-macos.tar.gz
             librcenet-ios.tar.gz
+            librcenet-tvos.tar.gz
             librcenet-linux.tar.gz
             librcenet-bsd.tar.gz
             librcenet-haiku.zip
-            librcenet-tvos.tar.gz
             include.tar.gz
 
   build_deploy_website:
