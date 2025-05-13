@@ -1,5 +1,7 @@
 # Crzgames - RCENet
 
+Dernier commit récupérer par rapport à ENet officiel: 657eaf9
+
 ## 📋 Great novelty compared to ENet Original
 - IPv6 / IPv4
 - Encrypt / Decrypt (ENetEncryptor)
