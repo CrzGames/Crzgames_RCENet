@@ -6,6 +6,10 @@ on:
       - staging
   workflow_dispatch:
 
+env:
+  XMAKE_ROOT: y
+
+
 jobs:
   build_rcenet:
     container: ${{ matrix.config.container }}
@@ -121,13 +125,9 @@ jobs:
         with:
           xmake-version: latest
 
-      - name: Configure project with xMake - Windows-MSVC / BSD / Haiku
-        if: ${{ matrix.config.platform == 'windows' || matrix.config.platform == 'bsd' || matrix.config.platform == 'haiku' }}
+      - name: Configure project with xMake - Windows-MSVC / Linux / BSD / Haiku
+        if: ${{ matrix.config.platform == 'windows' || matrix.config.platform == 'linux' || matrix.config.platform == 'bsd' || matrix.config.platform == 'haiku' }}
         run: xmake config --plat=${{ matrix.config.platform }} --arch=${{ matrix.config.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
-
-      - name: Configure project with xMake - Linux
-        if: matrix.config.platform == 'linux'
-        run: xmake config --plat=${{ matrix.config.platform }} --arch=${{ matrix.config.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes --root
 
       - name: Configure project with xMake - Android
         if: ${{ matrix.config.platform == 'android' }}
