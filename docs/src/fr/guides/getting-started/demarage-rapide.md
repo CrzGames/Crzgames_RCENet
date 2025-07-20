@@ -1,15 +1,15 @@
-# Quick Start
+# Démarrage rapide
 
-This guide will help you set up a basic project structure.
+Ce guide vous aidera à mettre en place une structure de projet de base.
 
-## Project Structure
+## Structure du projet
 
 - `client.c`
 - `server.c`
 
 ### client.c
 
-::: details Click me to view the code
+::: détails Cliquez ici pour voir le code
 ```c
 #include <rcenet/enet.h>
 #include <stdio.h>
