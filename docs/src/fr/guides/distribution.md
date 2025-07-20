@@ -8,7 +8,7 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 | **Windows** | x86 / x64 / arm / arm64 / arm64ec | Windows Vista+  | ✓          |
 | **macOS** | Intel x86_64 / Apple Silicon arm64 | macOS 11.0+ | ✓ |
 | **tvOS** | x86_64 / arm64 (appletvos) - x86_64 / arm64 (appletvsimulator) | tvOS 12.0+ | ✓ |
-| **iOS** | arm64 / arm64e (iphoneos) - arm64 / x86_64 (iphonesimulator) | iOS 12.0+ | ✓ |
+| **iOS/iPadOS** | arm64 / arm64e (iphoneos) - arm64 / x86_64 (iphonesimulator) | iOS 12.0+ | ✓ |
 | **Android** | arm64-v8a / armeabi-v7a / x86_64 / x86 | Android 6.0+ | ✓ |
 | **BSD** | x86 / x86_64 | glibc 2.35+ | ✓ |
 | **Linux** | x86 / x86_64 / arm / arm64 | glibc 2.35+ | ✓ |
@@ -30,7 +30,7 @@ Binaries : https://github.com/CrzGames/Crzgames_RCENet/releases
 | **Windows-MinGW** | `.a` | GCC | static |
 | **macOS** | `.a / .dylib` | Clang | static / shared |
 | **tvOS** | `.a` | Clang | static |
-| **iOS** | `.a` | Clang | static |
+| **iOS/iPadOS** | `.a` | Clang | static |
 | **Android** | `.a / .so` | NDK (Clang) | static / shared |
 | **Linux** | `.a / .so` | GCC | static / shared |
 | **BSD** | `.a / .so` | Clang | static / shared |
