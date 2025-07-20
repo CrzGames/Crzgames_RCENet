@@ -107,14 +107,14 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 
 
   # macOS :
-  1. Requirements : MacOS X >= 14.2
-  2. Download and Install xCode >= 15.2.0
+  1. Requirements : MacOS X >= 15.5.0
+  2. Download and Install xCode >= 16.4.0
   3. Download and Install Command Line Tools : xcode-select --install
   4. Download and Install CMake >= 3.25 : brew install cmake OR brew install xmake
 
 
   # Android (run in Windows) :
-  1. Download and Install : Android Studio 2023.2.1 (iguana) or newer
+  1. Download and Install : Android Studio 2025.1.1 or newer
   2. Add environment variable: ANDROID_HOME for path SDK Android (SDK Manager path)
   3. Download and Install CMake >= 3.25 : https://cmake.org/download/ and add PATH ENVIRONMENT.
   4. Download and Install Java JDK LTS (Oracle) == 17.0.10.
@@ -124,10 +124,10 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 
 
   # iOS (only macOS) :
-  1. Requirements : MacOS X >= 14.2
+  1. Requirements : MacOS X >= 15.5.0
   2. Download and Install Command Line Tools : xcode-select --install
-  3. Download and Install xCode >= 15.2.0
-  4. Download and Install SDK iOS >= 17.2
+  3. Download and Install xCode >= 16.4.0
+  4. Download and Install SDK iOS >= 18.0.0
   5. Download and Install brew : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   6. Download and Install CMake >= 3.25 : brew install cmake OR brew install xmake
   ```
