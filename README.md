@@ -103,20 +103,20 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" &&
     sudo apt-get install -y build-essential &&
     brew install gcc
-  4. Download and Install CMake >= 3.25 : brew install cmake OR brew install xmake
+  4. Download and Install xmake.
 
 
   # macOS :
   1. Requirements : MacOS X >= 15.5.0
   2. Download and Install xCode >= 16.4.0
   3. Download and Install Command Line Tools : xcode-select --install
-  4. Download and Install CMake >= 3.25 : brew install cmake OR brew install xmake
+  4. Download and Install xmake.
 
 
   # Android (run in Windows) :
   1. Download and Install : Android Studio 2025.1.1 or newer
   2. Add environment variable: ANDROID_HOME for path SDK Android (SDK Manager path)
-  3. Download and Install CMake >= 3.25 : https://cmake.org/download/ and add PATH ENVIRONMENT.
+  3. Download and Install xmake.
   4. Download and Install Java JDK LTS (Oracle) == 17.0.10.
 
   # Android (run in Unix) :
@@ -129,7 +129,7 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
   3. Download and Install xCode >= 16.4.0
   4. Download and Install SDK iOS >= 18.0.0
   5. Download and Install brew : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  6. Download and Install CMake >= 3.25 : brew install cmake OR brew install xmake
+  6. Download and Install xmake.
   ```
   
 <br /><br /><br /><br />
