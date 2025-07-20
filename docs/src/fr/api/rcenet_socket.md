@@ -1,23 +1,22 @@
-# RCENet Socket API Documentation
+# Documentation de l'API Socket RCENet
 
-Welcome to the RCENet Socket API documentation. This section offers an in-depth guide on socket management within RCENet, highlighting key functions and structures for creating, managing, and utilizing sockets for network communication.
+Bienvenue dans la documentation de l'API Socket RCENet. Cette section offre un guide approfondi sur la gestion des sockets au sein de RCENet, mettant en évidence les fonctions clés et les structures pour la création, la gestion et l'utilisation des sockets pour la communication réseau.
 
-## Overview
+## Vue d'ensemble
 
-The RCENet library abstracts the complexities involved in socket programming, providing a simplified interface for network communication. This document delves into the `ENetSocket`, a fundamental aspect of network communication, covering their creation, options, and usage within the RCENet library.
+La bibliothèque RCENet abstrait les complexités de la programmation des sockets, offrant une interface simplifiée pour la communication réseau. Ce document explore en détail l'`ENetSocket`, un aspect fondamental de la communication réseau, couvrant leur création, les options et leur utilisation au sein de la bibliothèque RCENet.
 
 <br /><br />
 
-
-## Enumerations
+## Énumérations
 
 ### `ENetSocketType`
 
-Defines the behavior and characteristics of sockets used in network communications.
+Définit le comportement et les caractéristiques des sockets utilisés dans les communications réseau.
 
-- **Types:**
-  - `ENET_SOCKET_TYPE_STREAM`: Stream socket (TCP), providing reliable, sequenced, and connection-oriented transmissions.
-  - `ENET_SOCKET_TYPE_DATAGRAM`: Datagram socket (UDP), used for connectionless transmissions.
+- **Types :**
+  - `ENET_SOCKET_TYPE_STREAM` : Socket de flux (TCP), fournissant des transmissions fiables, séquencées et orientées connexion.
+  - `ENET_SOCKET_TYPE_DATAGRAM` : Socket de datagramme (UDP), utilisé pour des transmissions sans connexion.
 
 ```c
 typedef enum _ENetSocketType
@@ -31,13 +30,13 @@ typedef enum _ENetSocketType
 
 ### `ENetSocketWait`
 
-Specifies conditions a socket should wait for during selection operations.
+Spécifie les conditions qu'un socket doit attendre pendant les opérations de sélection.
 
-- **Conditions:**
-  - `ENET_SOCKET_WAIT_NONE`: No waiting condition.
-  - `ENET_SOCKET_WAIT_SEND`: Wait for the socket to be ready to send data.
-  - `ENET_SOCKET_WAIT_RECEIVE`: Wait for the socket to be ready to receive data.
-  - `ENET_SOCKET_WAIT_INTERRUPT`: Wait for an interrupt.
+- **Conditions :**
+  - `ENET_SOCKET_WAIT_NONE` : Aucune condition d'attente.
+  - `ENET_SOCKET_WAIT_SEND` : Attendre que le socket soit prêt à envoyer des données.
+  - `ENET_SOCKET_WAIT_RECEIVE` : Attendre que le socket soit prêt à recevoir des données.
+  - `ENET_SOCKET_WAIT_INTERRUPT` : Attendre une interruption.
 
 ```c
 typedef enum _ENetSocketWait
@@ -53,20 +52,20 @@ typedef enum _ENetSocketWait
 
 ### `ENetSocketOption`
 
-Options for configuring socket behavior at the OS level.
+Options pour configurer le comportement des sockets au niveau du système d'exploitation.
 
-- **Options:**
-  - `ENET_SOCKOPT_NONBLOCK`: Enable non-blocking mode for the socket.
-  - `ENET_SOCKOPT_BROADCAST`: Enable the sending of broadcast packets.
-  - `ENET_SOCKOPT_RCVBUF`: Size of the receive buffer.
-  - `ENET_SOCKOPT_SNDBUF`: Size of the send buffer.
-  - `ENET_SOCKOPT_REUSEADDR`: Allow reuse of local addresses.
-  - `ENET_SOCKOPT_RCVTIMEO`: Timeout for receiving.
-  - `ENET_SOCKOPT_SNDTIMEO`: Timeout for sending.
-  - `ENET_SOCKOPT_ERROR`: Get pending error on the socket.
-  - `ENET_SOCKOPT_NODELAY`: Disable Nagle's algorithm (for TCP sockets).
-  - `ENET_SOCKOPT_TTL`: Set the TTL for IP packets.
-  - `ENET_SOCKOPT_IPV6ONLY`: IPv6-only socket, without support for IPv4-mapped addresses.
+- **Options :**
+  - `ENET_SOCKOPT_NONBLOCK` : Active le mode non bloquant pour le socket.
+  - `ENET_SOCKOPT_BROADCAST` : Active l'envoi de paquets de diffusion.
+  - `ENET_SOCKOPT_RCVBUF` : Taille du tampon de réception.
+  - `ENET_SOCKOPT_SNDBUF` : Taille du tampon d'envoi.
+  - `ENET_SOCKOPT_REUSEADDR` : Permet la réutilisation des adresses locales.
+  - `ENET_SOCKOPT_RCVTIMEO` : Délai pour la réception.
+  - `ENET_SOCKOPT_SNDTIMEO` : Délai pour l'envoi.
+  - `ENET_SOCKOPT_ERROR` : Obtenir l'erreur en attente sur le socket.
+  - `ENET_SOCKOPT_NODELAY` : Désactive l'algorithme de Nagle (pour les sockets TCP).
+  - `ENET_SOCKOPT_TTL` : Définit le TTL pour les paquets IP.
+  - `ENET_SOCKOPT_IPV6ONLY` : Socket uniquement IPv6, sans support pour les adresses IPv4 mappées.
 
 ```c
 typedef enum _ENetSocketOption
@@ -89,12 +88,12 @@ typedef enum _ENetSocketOption
 
 ### `ENetSocketShutdown`
 
-Modes for socket shutdown operations.
+Modes pour les opérations de fermeture de socket.
 
-- **Modes:**
-  - `ENET_SOCKET_SHUTDOWN_READ`: Close the receive side of the socket.
-  - `ENET_SOCKET_SHUTDOWN_WRITE`: Close the send side of the socket.
-  - `ENET_SOCKET_SHUTDOWN_READ_WRITE`: Close both send and receive sides.
+- **Modes :**
+  - `ENET_SOCKET_SHUTDOWN_READ` : Ferme le côté réception du socket.
+  - `ENET_SOCKET_SHUTDOWN_WRITE` : Ferme le côté envoi du socket.
+  - `ENET_SOCKET_SHUTDOWN_READ_WRITE` : Ferme les côtés envoi et réception.
 
 ```c
 typedef enum _ENetSocketShutdown
@@ -107,142 +106,139 @@ typedef enum _ENetSocketShutdown
 
 <br /><br />
 
+## Fonctions
 
-## Functions
-
-This section provides a detailed overview of the socket-related functions in the RCENet library, allowing for the creation, management, and utilization of network sockets for UDP and TCP communications.
+Cette section fournit un aperçu détaillé des fonctions liées aux sockets dans la bibliothèque RCENet, permettant la création, la gestion et l'utilisation des sockets réseau pour les communications UDP et TCP.
 
 ### `enet_socket_create`
 
-Creates a socket of the specified type.
+Crée un socket du type spécifié.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API ENetSocket enet_socket_create(ENetAddressType addressType, ENetSocketType socketType);
   ```
-- **Parameters**:
-  - `addressType`: The type of address (IPv4, IPv6) the socket will use.
-  - `socketType`: The type of socket to create (STREAM for TCP, DATAGRAM for UDP).
-- **Returns**: A handle to the newly created socket, or `ENET_SOCKET_NULL` on failure.
+- **Paramètres :**
+  - `addressType` : Le type d'adresse (IPv4, IPv6) que le socket utilisera.
+  - `socketType` : Le type de socket à créer (STREAM pour TCP, DATAGRAM pour UDP).
+- **Retourne** : Un handle vers le socket nouvellement créé, ou `ENET_SOCKET_NULL` en cas d'échec.
 
 <br /><br />
 
 ### `enet_socket_bind`
 
-Binds a socket to a local address.
+Lie un socket à une adresse locale.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_bind(ENetSocket socket, const ENetAddress *address);
   ```
-- **Parameters**:
-  - `socket`: The socket to bind.
-  - `address`: The local address to bind the socket to.
-- **Returns**: `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket à lier.
+  - `address` : L'adresse locale à laquelle lier le socket.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_socket_listen`
 
-Listens for incoming connections on a socket.
+Écoute les connexions entrantes sur un socket.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_listen(ENetSocket socket, int backlog);
   ```
-- **Parameters**:
-  - `socket`: The socket to listen on.
-  - `backlog`: The maximum length for the queue of pending connections.
-- **Returns**: `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket sur lequel écouter.
+  - `backlog` : La longueur maximale de la file d'attente des connexions en attente.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
-### Data Transmission
+### Transmission de données
 
 ### `enet_socket_send`
 
-Sends data to a specified destination.
+Envoie des données à une destination spécifiée.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_send(ENetSocket socket, const ENetAddress *destination, const ENetBuffer *buffers, size_t bufferCount);
   ```
-- **Parameters**:
-  - `socket`: The socket from which data is sent.
-  - `destination`: The address of the recipient.
-  - `buffers`: An array of data buffers to send.
-  - `bufferCount`: The number of data buffers.
-- **Returns**: The total number of bytes sent, or `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket à partir duquel les données sont envoyées.
+  - `destination` : L'adresse du destinataire.
+  - `buffers` : Un tableau de tampons de données à envoyer.
+  - `bufferCount` : Le nombre de tampons de données.
+- **Retourne** : Le nombre total d'octets envoyés, ou `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_socket_receive`
 
-Receives data from a socket.
+Reçoit des données d'un socket.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_receive(ENetSocket socket, ENetAddress *sender, ENetBuffer *buffers, size_t bufferCount);
   ```
-- **Parameters**:
-  - `socket`: The socket on which data is received.
-  - `sender`: The address of the sender.
-  - `buffers`: An array of buffers to store the received data.
-  - `bufferCount`: The number of data buffers.
-- **Returns**: The total number of bytes received, or `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket sur lequel les données sont reçues.
+  - `sender` : L'adresse de l'expéditeur.
+  - `buffers` : Un tableau de tampons pour stocker les données reçues.
+  - `bufferCount` : Le nombre de tampons de données.
+- **Retourne** : Le nombre total d'octets reçus, ou `< 0` en cas d'échec.
 
 <br /><br />
 
-### Socket Configuration
+### Configuration des sockets
 
 ### `enet_socket_set_option`
 
-Sets an option on a socket.
+Définit une option sur un socket.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_set_option(ENetSocket socket, ENetSocketOption option, int value);
   ```
-- **Parameters**:
-  - `socket`: The socket to configure.
-  - `option`: The specific option to set.
-  - `value`: The value to set for the option.
-- **Returns**: `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket à configurer.
+  - `option` : L'option spécifique à définir.
+  - `value` : La valeur à définir pour l'option.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
-
-### Socket Shutdown and Destruction
+### Fermeture et destruction des sockets
 
 ### `enet_socket_shutdown`
 
-Shuts down part of a full-duplex connection.
+Ferme une partie d'une connexion bidirectionnelle.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_socket_shutdown(ENetSocket socket, ENetSocketShutdown how);
   ```
-- **Parameters**:
-  - `socket`: The socket to shut down.
-  - `how`: The method of shutdown (read, write, or both).
-- **Returns**: `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `socket` : Le socket à fermer.
+  - `how` : La méthode de fermeture (lecture, écriture, ou les deux).
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_socket_destroy`
 
-Closes and destroys a socket.
+Ferme et détruit un socket.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API void enet_socket_destroy(ENetSocket socket);
   ```
-- **Parameters**:
-  - `socket`: The socket to destroy.
+- **Paramètres :**
+  - `socket` : Le socket à détruire.
 
 <br /><br />
 
-
 ## Conclusion
 
-The RCENet Socket API simplifies network programming by providing a high-level interface to socket operations, enabling developers to focus on the core logic of their networked applications. For further information or assistance, please consult the official RCENet documentation or the ENet programming guide.
+L'API Socket RCENet simplifie la programmation réseau en fournissant une interface de haut niveau pour les opérations sur les sockets, permettant aux développeurs de se concentrer sur la logique principale de leurs applications réseau. Pour plus d'informations ou d'assistance, veuillez consulter la documentation officielle de RCENet ou le guide de programmation ENet.

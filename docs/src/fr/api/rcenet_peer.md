@@ -1,65 +1,63 @@
+# Documentation de l'API Pair RCENet
 
-# RCENet Peer API Documentation
+Bienvenue dans la documentation de l'API Pair RCENet. Cette section offre un guide approfondi sur la gestion des pairs au sein de RCENet, mettant en évidence les fonctions clés, les structures et les énumérations essentielles pour l'interaction et la gestion des pairs.
 
-Welcome to the RCENet Peer API documentation. This section offers an in-depth guide on peer management within RCENet, highlighting key functions, structures, and enumerations essential for peer interaction and management.
+## Vue d'ensemble
 
-## Overview
-
-Peers represent the other endpoints in a networked environment with which a host can communicate. This document covers the functionalities provided by RCENet to manage these peers, including querying peer state, managing connections, and handling data transmission and reception.
+Les pairs représentent les autres points de terminaison dans un environnement réseau avec lesquels un hôte peut communiquer. Ce document couvre les fonctionnalités fournies par RCENet pour gérer ces pairs, y compris l'interrogation de l'état des pairs, la gestion des connexions, et la gestion de la transmission et de la réception des données.
 
 <br /><br />
-
 
 ## Structures
 
 ### `ENetPeer`
 
-Represents a network peer, a remote endpoint with which data packets can be exchanged.
+Représente un pair réseau, un point de terminaison distant avec lequel des paquets de données peuvent être échangés.
 
-- **Fields:**
-    - `dispatchList`: Internally used for queuing events for this peer.
-    - `host`: The host object this peer is associated with.
-    - `outgoingPeerID`/`incomingPeerID`: Identifiers used for distinguishing this peer in outgoing/incoming connections.
-    - `connectID`: A unique identifier for the connection to this peer.
-    - `outgoingSessionID`/`incomingSessionID`: Session identifiers for tracking session changes.
-    - `address`: The network address of the peer.
-    - `data`: User-defined data associated with the peer, can be used to store application-specific information.
-    - `state`: The current state of the peer (e.g., connected, disconnecting, etc.).
-    - `channels`: An array of channels over which data is sent and received. Channels provide separate streams of communication.
-    - `channelCount`: The number of channels allocated for this peer.
-    - `incomingBandwidth`/`outgoingBandwidth`: The configured incoming/outgoing bandwidth limits for this peer.
-    - `incomingBandwidthThrottleEpoch`/`outgoingBandwidthThrottleEpoch`: Used internally to manage bandwidth throttling.
-    - `incomingDataTotal`/`outgoingDataTotal`: The total amount of incoming/outgoing data since the last reset or initialization.
-    - `lastSendTime`/`lastReceiveTime`: Timestamps of the last send/receive operations.
-    - `nextTimeout`/`earliestTimeout`: Used internally to manage connection timeouts and retransmissions.
-    - `packetLossEpoch`: Used internally for calculating packet loss over time.
-    - `packetsSent`/`packetsLost`: Counters for the total number of packets sent and lost.
-    - `packetLoss`/`packetLossVariance`: Measures of packet loss ratio and its variance.
-    - `packetThrottle`: The current packet throttle value, affecting data transmission rate.
-    - `packetThrottleLimit`/`packetThrottleCounter`: Control the throttling mechanism.
-    - `packetThrottleEpoch`: Timestamp for the last throttle evaluation.
-    - `packetThrottleAcceleration`/`Deceleration`: Controls how quickly the throttle value changes.
-    - `packetThrottleInterval`: Time interval for packet throttle evaluations.
-    - `pingInterval`: Frequency at which ping messages are sent to keep the connection alive.
-    - `timeoutLimit`/`Minimum`/`Maximum`: Configuration for connection timeout thresholds.
-    - `lastRoundTripTime`/`lowestRoundTripTime`/`Variance`: Statistics on the round-trip time (RTT) for packets to this peer.
-    - `roundTripTime`/`roundTripTimeVariance`: Average RTT and its variance.
-    - `mtu`: Maximum transmission unit size, impacting the size of packets sent.
-    - `windowSize`: Flow control window size for reliable packet delivery.
-    - `reliableDataInTransit`: Amount of reliable data that has been sent but not yet acknowledged.
-    - `outgoingReliableSequenceNumber`: Sequence number for the next reliable packet to be sent.
-    - `ENetList acknowledgements`: A list of acknowledgements to be sent. This list contains acknowledgements for packets that have been received and acknowledged by this peer.
-    - `ENetList sentReliableCommands`: A list of reliable commands that have been sent but not yet acknowledged. This ensures reliable delivery of packets.
-    - `ENetList outgoingSendReliableCommands`: A list of reliable commands that are ready to be sent. These commands are queued for sending in a reliable manner.
-    - `ENetList outgoingCommands`: A list of commands that are ready to be sent, including both reliable and unreliable commands.
-    - `ENetList dispatchedCommands`: A list of commands that have been dispatched. This list is used for managing commands that have been processed and are awaiting further action, such as acknowledgement.
-    - `enet_uint16 flags`: Flags for behavior control of the peer. This includes flags like `ENET_PEER_FLAG_NEEDS_DISPATCH` and `ENET_PEER_FLAG_CONTINUE_SENDING`, which control the peer's behavior regarding message dispatch and sending packets.
-    - `enet_uint16 reserved`: A reserved field for future use, ensuring compatibility with future versions of the protocol or library extensions.
-    - `enet_uint16 incomingUnsequencedGroup`: Used to track incoming unsequenced packets. This field is part of managing packets that are sent without a specific order.
-    - `enet_uint16 outgoingUnsequencedGroup`: Similar to the incoming unsequenced group but for outgoing packets. It tracks the group number for unsequenced packets that are sent.
-    - `enet_uint32 unsequencedWindow[ENET_PEER_UNSEQUENCED_WINDOW_SIZE / 32]`: A window used to track received unsequenced packets. This array helps in managing and filtering out duplicate unsequenced packets that may be received.
-    - `enet_uint32 eventData`: This field is used to store custom event data that can be associated with specific actions or triggers in the network communication.
-    - `size_t totalWaitingData`: Represents the total amount of data that is waiting to be sent to this peer. This includes all queued packets and commands that have not yet been transmitted.
+- **Champs :**
+    - `dispatchList` : Utilisé en interne pour mettre en file d'attente les événements pour ce pair.
+    - `host` : L'objet hôte associé à ce pair.
+    - `outgoingPeerID`/`incomingPeerID` : Identifiants utilisés pour distinguer ce pair dans les connexions sortantes/entrantes.
+    - `connectID` : Un identifiant unique pour la connexion à ce pair.
+    - `outgoingSessionID`/`incomingSessionID` : Identifiants de session pour suivre les changements de session.
+    - `address` : L'adresse réseau du pair.
+    - `data` : Données définies par l'utilisateur associées au pair, peuvent être utilisées pour stocker des informations spécifiques à l'application.
+    - `state` : L'état actuel du pair (par exemple, connecté, en cours de déconnexion, etc.).
+    - `channels` : Un tableau de canaux sur lesquels les données sont envoyées et reçues. Les canaux fournissent des flux de communication séparés.
+    - `channelCount` : Le nombre de canaux alloués pour ce pair.
+    - `incomingBandwidth`/`outgoingBandwidth` : Les limites de bande passante entrante/sortante configurées pour ce pair.
+    - `incomingBandwidthThrottleEpoch`/`outgoingBandwidthThrottleEpoch` : Utilisés en interne pour gérer la limitation de bande passante.
+    - `incomingDataTotal`/`outgoingDataTotal` : La quantité totale de données entrantes/sortantes depuis la dernière réinitialisation ou initialisation.
+    - `lastSendTime`/`lastReceiveTime` : Horodatages des dernières opérations d'envoi/réception.
+    - `nextTimeout`/`earliestTimeout` : Utilisés en interne pour gérer les délais de connexion et les retransmissions.
+    - `packetLossEpoch` : Utilisé en interne pour calculer la perte de paquets au fil du temps.
+    - `packetsSent`/`packetsLost` : Compteurs pour le nombre total de paquets envoyés et perdus.
+    - `packetLoss`/`packetLossVariance` : Mesures du taux de perte de paquets et de sa variance.
+    - `packetThrottle` : La valeur actuelle de limitation des paquets, affectant le taux de transmission des données.
+    - `packetThrottleLimit`/`packetThrottleCounter` : Contrôlent le mécanisme de limitation.
+    - `packetThrottleEpoch` : Horodatage de la dernière évaluation de la limitation.
+    - `packetThrottleAcceleration`/`Deceleration` : Contrôlent la rapidité avec laquelle la valeur de limitation change.
+    - `packetThrottleInterval` : Intervalle de temps pour les évaluations de limitation des paquets.
+    - `pingInterval` : Fréquence à laquelle les messages ping sont envoyés pour maintenir la connexion active.
+    - `timeoutLimit`/`Minimum`/`Maximum` : Configuration des seuils de délai de connexion.
+    - `lastRoundTripTime`/`lowestRoundTripTime`/`Variance` : Statistiques sur le temps de trajet aller-retour (RTT) pour les paquets vers ce pair.
+    - `roundTripTime`/`roundTripTimeVariance` : RTT moyen et sa variance.
+    - `mtu` : Taille de l'unité de transmission maximale, impactant la taille des paquets envoyés.
+    - `windowSize` : Taille de la fenêtre de contrôle de flux pour la livraison fiable des paquets.
+    - `reliableDataInTransit` : Quantité de données fiables envoyées mais non encore confirmées.
+    - `outgoingReliableSequenceNumber` : Numéro de séquence pour le prochain paquet fiable à envoyer.
+    - `ENetList acknowledgements` : Une liste d'accusés de réception à envoyer. Cette liste contient des accusés de réception pour les paquets reçus et confirmés par ce pair.
+    - `ENetList sentReliableCommands` : Une liste de commandes fiables envoyées mais non encore confirmées. Cela garantit la livraison fiable des paquets.
+    - `ENetList outgoingSendReliableCommands` : Une liste de commandes fiables prêtes à être envoyées. Ces commandes sont mises en file d'attente pour un envoi fiable.
+    - `ENetList outgoingCommands` : Une liste de commandes prêtes à être envoyées, incluant les commandes fiables et non fiables.
+    - `ENetList dispatchedCommands` : Une liste de commandes dispatchées. Cette liste est utilisée pour gérer les commandes qui ont été traitées et attendent une action supplémentaire, comme une confirmation.
+    - `enet_uint16 flags` : Drapeaux pour le contrôle du comportement du pair. Inclut des drapeaux comme `ENET_PEER_FLAG_NEEDS_DISPATCH` et `ENET_PEER_FLAG_CONTINUE_SENDING`, qui contrôlent le comportement du pair concernant l'envoi de messages et de paquets.
+    - `enet_uint16 reserved` : Un champ réservé pour une utilisation future, assurant la compatibilité avec les futures versions du protocole ou des extensions de la bibliothèque.
+    - `enet_uint16 incomingUnsequencedGroup` : Utilisé pour suivre les paquets entrants non séquencés. Ce champ fait partie de la gestion des paquets envoyés sans ordre spécifique.
+    - `enet_uint16 outgoingUnsequencedGroup` : Similaire au groupe non séquencé entrant, mais pour les paquets sortants. Il suit le numéro de groupe pour les paquets non séquencés envoyés.
+    - `enet_uint32 unsequencedWindow[ENET_PEER_UNSEQUENCED_WINDOW_SIZE / 32]` : Une fenêtre utilisée pour suivre les paquets non séquencés reçus. Ce tableau aide à gérer et à filtrer les paquets non séquencés en double qui peuvent être reçus.
+    - `enet_uint32 eventData` : Ce champ est utilisé pour stocker des données d'événement personnalisées qui peuvent être associées à des actions ou déclencheurs spécifiques dans la communication réseau.
+    - `size_t totalWaitingData` : Représente la quantité totale de données en attente d'envoi vers ce pair. Cela inclut tous les paquets et commandes en file d'attente qui n'ont pas encore été transmis.
 
 ```c
 typedef struct _ENetPeer { 
@@ -126,18 +124,18 @@ typedef struct _ENetPeer {
 } ENetPeer;
 ```
 
-This section covers the initial set of fields in the `ENetPeer` structure. The subsequent parts will delve into the remaining fields, explaining their purposes and how they contribute to the management of network peers.
+Cette section couvre l'ensemble initial des champs de la structure `ENetPeer`. Les parties suivantes approfondiront les champs restants, expliquant leurs objectifs et comment ils contribuent à la gestion des pairs réseau.
 
 <br /><br />
 
 ### `ENetAcknowledgement`
 
-Represents an acknowledgement in ENet, sent to confirm the receipt of a packet.
+Représente un accusé de réception dans ENet, envoyé pour confirmer la réception d'un paquet.
 
-- **Fields:**
-    - `acknowledgementList`: Node in the list of acknowledgements.
-    - `sentTime`: The time when the corresponding packet was sent.
-    - `command`: The protocol command sent as an acknowledgement.
+- **Champs :**
+    - `acknowledgementList` : Nœud dans la liste des accusés de réception.
+    - `sentTime` : L'heure à laquelle le paquet correspondant a été envoyé.
+    - `command` : La commande de protocole envoyée comme accusé de réception.
 
 ```c
 typedef struct _ENetAcknowledgement {
@@ -151,20 +149,20 @@ typedef struct _ENetAcknowledgement {
 
 ### `ENetOutgoingCommand`
 
-Represents an outgoing command in ENet, a packet or action to be sent to a peer.
+Représente une commande sortante dans ENet, un paquet ou une action à envoyer à un pair.
 
-- **Fields:**
-    - `outgoingCommandList`: Node in the list of outgoing commands.
-    - `reliableSequenceNumber`: Reliable sequence number for tracking packets.
-    - `unreliableSequenceNumber`: Unreliable sequence number for tracking packets.
-    - `sentTime`: The time when the command was sent.
-    - `roundTripTimeout`: Timeout before considering the command lost.
-    - `queueTime`: Time before the command is queued for sending.
-    - `fragmentOffset`: Offset of the fragment in the packet, if the command is fragmented.
-    - `fragmentLength`: Length of the command's fragment.
-    - `sendAttempts`: Number of attempts to send the command.
-    - `command`: The protocol command to be sent.
-    - `packet`: The packet associated with the command, if any.
+- **Champs :**
+    - `outgoingCommandList` : Nœud dans la liste des commandes sortantes.
+    - `reliableSequenceNumber` : Numéro de séquence fiable pour le suivi des paquets.
+    - `unreliableSequenceNumber` : Numéro de séquence non fiable pour le suivi des paquets.
+    - `sentTime` : L'heure à laquelle la commande a été envoyée.
+    - `roundTripTimeout` : Délai avant de considérer la commande comme perdue.
+    - `queueTime` : Temps avant que la commande ne soit mise en file d'attente pour l'envoi.
+    - `fragmentOffset` : Décalage du fragment dans le paquet, si la commande est fragmentée.
+    - `fragmentLength` : Longueur du fragment de la commande.
+    - `sendAttempts` : Nombre de tentatives d'envoi de la commande.
+    - `command` : La commande de protocole à envoyer.
+    - `packet` : Le paquet associé à la commande, s'il y en a un.
 
 ```c
 typedef struct _ENetOutgoingCommand {
@@ -186,17 +184,17 @@ typedef struct _ENetOutgoingCommand {
 
 ### `ENetIncomingCommand`
 
-Represents an incoming command in ENet, data or actions received from a peer.
+Représente une commande entrante dans ENet, des données ou actions reçues d'un pair.
 
-- **Fields:**
-    - `incomingCommandList`: Node in the list of incoming commands.
-    - `reliableSequenceNumber`: Reliable sequence number for tracking packets.
-    - `unreliableSequenceNumber`: Unreliable sequence number for tracking packets.
-    - `command`: The received protocol command.
-    - `fragmentCount`: Total number of fragments for this packet.
-    - `fragmentsRemaining`: Number of remaining fragments to receive.
-    - `fragments`: Bitfield for tracking received fragments.
-    - `packet`: The packet associated with the command, once all fragments are received.
+- **Champs :**
+    - `incomingCommandList` : Nœud dans la liste des commandes entrantes.
+    - `reliableSequenceNumber` : Numéro de séquence fiable pour le suivi des paquets.
+    - `unreliableSequenceNumber` : Numéro de séquence non fiable pour le suivi des paquets.
+    - `command` : La commande de protocole reçue.
+    - `fragmentCount` : Nombre total de fragments pour ce paquet.
+    - `fragmentsRemaining` : Nombre de fragments restants à recevoir.
+    - `fragments` : Champ de bits pour suivre les fragments reçus.
+    - `packet` : Le paquet associé à la commande, une fois tous les fragments reçus.
 
 ```c
 typedef struct _ENetIncomingCommand {
@@ -213,15 +211,14 @@ typedef struct _ENetIncomingCommand {
 
 <br /><br />
 
-
-## Enumerations
+## Énumérations
 
 ### `_ENetPeerFlag`
 
-Flags controlling peer state and behavior:
+Drapeaux contrôlant l'état et le comportement du pair :
 
-- `ENET_PEER_FLAG_NEEDS_DISPATCH`: Indicates that the peer has pending messages that need to be dispatched.
-- `ENET_PEER_FLAG_CONTINUE_SENDING`: Allows the peer to continue sending packets even if the bandwidth limit has been reached.
+- `ENET_PEER_FLAG_NEEDS_DISPATCH` : Indique que le pair a des messages en attente qui doivent être dispatchés.
+- `ENET_PEER_FLAG_CONTINUE_SENDING` : Permet au pair de continuer à envoyer des paquets même si la limite de bande passante a été atteinte.
 
 ```c
 typedef enum _ENetPeerFlag {
@@ -234,19 +231,19 @@ typedef enum _ENetPeerFlag {
 
 ### `ENetPeerState`
 
-Enumerates the possible states of a peer in ENet. These states represent the lifecycle of a peer's connection to the ENet network.
+Énumère les états possibles d'un pair dans ENet. Ces états représentent le cycle de vie de la connexion d'un pair au réseau ENet.
 
-- **States:**
-  - `ENET_PEER_STATE_DISCONNECTED`: The peer is disconnected.
-  - `ENET_PEER_STATE_CONNECTING`: The peer is in the process of connecting.
-  - `ENET_PEER_STATE_ACKNOWLEDGING_CONNECT`: The peer is acknowledging the connection.
-  - `ENET_PEER_STATE_CONNECTION_PENDING`: The peer's connection is pending.
-  - `ENET_PEER_STATE_CONNECTION_SUCCEEDED`: The peer's connection succeeded.
-  - `ENET_PEER_STATE_CONNECTED`: The peer is connected.
-  - `ENET_PEER_STATE_DISCONNECT_LATER`: The peer will be disconnected later.
-  - `ENET_PEER_STATE_DISCONNECTING`: The peer is disconnecting.
-  - `ENET_PEER_STATE_ACKNOWLEDGING_DISCONNECT`: The peer is acknowledging disconnection.
-  - `ENET_PEER_STATE_ZOMBIE`: The peer is in a zombie state, waiting for cleanup.
+- **États :**
+  - `ENET_PEER_STATE_DISCONNECTED` : Le pair est déconnecté.
+  - `ENET_PEER_STATE_CONNECTING` : Le pair est en cours de connexion.
+  - `ENET_PEER_STATE_ACKNOWLEDGING_CONNECT` : Le pair accuse réception de la connexion.
+  - `ENET_PEER_STATE_CONNECTION_PENDING` : La connexion du pair est en attente.
+  - `ENET_PEER_STATE_CONNECTION_SUCCEEDED` : La connexion du pair a réussi.
+  - `ENET_PEER_STATE_CONNECTED` : Le pair est connecté.
+  - `ENET_PEER_STATE_DISCONNECT_LATER` : Le pair sera déconnecté plus tard.
+  - `ENET_PEER_STATE_DISCONNECTING` : Le pair est en cours de déconnexion.
+  - `ENET_PEER_STATE_ACKNOWLEDGING_DISCONNECT` : Le pair accuse réception de la déconnexion.
+  - `ENET_PEER_STATE_ZOMBIE` : Le pair est dans un état zombie, en attente de nettoyage.
 
 ```c
 typedef enum _ENetPeerState
@@ -266,376 +263,375 @@ typedef enum _ENetPeerState
 
 <br /><br />
 
+## Fonctions
 
-## Functions
-
-### Peer Management
+### Gestion des pairs
 
 ### `enet_peer_get_id`
 
-_Retrieves the unique identifier of a peer._
+_Récupère l'identifiant unique d'un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_id(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose ID is being retrieved.
-- **Returns:** The unique identifier for the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont l'ID est récupéré.
+- **Retourne :** L'identifiant unique du pair.
 
 <br /><br />
 
 ### `enet_peer_get_ip`
 
-_Retrieves the IP address of a peer._
+_Récupère l'adresse IP d'un pair._
 
 ```c
 ENET_API int enet_peer_get_ip(const ENetPeer *peer, char *ip, size_t ipLength);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose IP address is being retrieved.
-  - `ip`: Buffer where the IP address will be stored.
-  - `ipLength`: Length of the `ip` buffer.
-- **Returns:** `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont l'adresse IP est récupérée.
+  - `ip` : Tampon où l'adresse IP sera stockée.
+  - `ipLength` : Longueur du tampon `ip`.
+- **Retourne :** `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_peer_get_port`
 
-_Retrieves the port number of a peer._
+_Récupère le numéro de port d'un pair._
 
 ```c
 ENET_API enet_uint16 enet_peer_get_port(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose port number is being retrieved.
-- **Returns:** The port number of the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont le numéro de port est récupéré.
+- **Retourne :** Le numéro de port du pair.
 
 <br /><br />
 
 ### `enet_peer_get_mtu`
 
-_Retrieves the Maximum Transmission Unit (MTU) size of a peer._
+_Récupère la taille de l'unité de transmission maximale (MTU) d'un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_mtu(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose MTU size is being retrieved.
-- **Returns:** The MTU size of the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont la taille MTU est récupérée.
+- **Retourne :** La taille MTU du pair.
 
 <br /><br />
 
 ### `enet_peer_get_state`
 
-_Retrieves the current state of a peer._
+_Récupère l'état actuel d'un pair._
 
 ```c
 ENET_API ENetPeerState enet_peer_get_state(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose state is being retrieved.
-- **Returns:** The current state of the peer, as an `ENetPeerState` enum value.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont l'état est récupéré.
+- **Retourne :** L'état actuel du pair, sous forme d'une valeur de l'énumération `ENetPeerState`.
 
 <br /><br />
 
 ### `enet_peer_get_rtt`
 
-_Retrieves the round-trip time (RTT) to a peer._
+_Récupère le temps de trajet aller-retour (RTT) vers un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_rtt(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose RTT is being retrieved.
-- **Returns:** The RTT to the peer in milliseconds.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont le RTT est récupéré.
+- **Retourne :** Le RTT vers le pair en millisecondes.
 
 <br /><br />
 
 ### `enet_peer_get_last_rtt`
 
-_Retrieves the last calculated Round-Trip Time (RTT) to a peer._
+_Récupère le dernier temps de trajet aller-retour (RTT) calculé vers un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_last_rtt(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose last RTT is being retrieved.
-- **Returns:** The last calculated RTT to the peer in milliseconds.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont le dernier RTT est récupéré.
+- **Retourne :** Le dernier RTT calculé vers le pair en millisecondes.
 
 <br /><br />
 
 ### `enet_peer_get_lastsendtime`
 
-_Retrieves the last time a packet was sent to a peer._
+_Récupère l'heure du dernier envoi d'un paquet à un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_lastsendtime(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer.
-- **Returns:** The timestamp of the last packet sent to the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair.
+- **Retourne :** L'horodatage du dernier paquet envoyé au pair.
 
 <br /><br />
 
 ### `enet_peer_get_lastreceivetime`
 
-_Retrieves the last time a packet was received from a peer._
+_Récupère l'heure de la dernière réception d'un paquet d'un pair._
 
 ```c
 ENET_API enet_uint32 enet_peer_get_lastreceivetime(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer.
-- **Returns:** The timestamp of the last packet received from the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair.
+- **Retourne :** L'horodatage du dernier paquet reçu du pair.
 
 <br /><br />
 
 ### `enet_peer_get_packets_throttle`
 
-_Retrieves the packet throttle value for a peer._
+_Récupère la valeur de limitation des paquets pour un pair._
 
 ```c
 ENET_API float enet_peer_get_packets_throttle(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer whose packet throttle value is being retrieved.
-- **Returns:** The packet throttle value of the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont la valeur de limitation des paquets est récupérée.
+- **Retourne :** La valeur de limitation des paquets du pair.
 
 <br /><br />
 
 ### `enet_peer_get_data`
 
-_Retrieves user-defined data associated with a peer._
+_Récupère les données définies par l'utilisateur associées à un pair._
 
 ```c
 ENET_API void * enet_peer_get_data(const ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer from which to retrieve the user data.
-- **Returns:** A pointer to the user-defined data associated with the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont les données utilisateur sont récupérées.
+- **Retourne :** Un pointeur vers les données définies par l'utilisateur associées au pair.
 
 <br /><br />
 
 ### `enet_peer_set_data`
 
-_Associates user-defined data with a peer._
+_Associer des données définies par l'utilisateur à un pair._
 
 ```c
 ENET_API void enet_peer_set_data(ENetPeer *peer, void *data);
 ```
 
-- **Parameters:**
-  - `peer`: Pointer to the peer with which to associate the user data.
-  - `data`: Pointer to the user-defined data to associate with the peer.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair auquel associer les données utilisateur.
+  - `data` : Pointeur vers les données définies par l'utilisateur à associer au pair.
 
 <br /><br />
 
-### Data Transmission and Reception
+### Transmission et réception de données
 
 ### `enet_peer_send`
 
-_Sends a packet to a specific peer._
+_Envoie un paquet à un pair spécifique._
 
 ```c
 ENET_API int enet_peer_send(ENetPeer *peer, enet_uint8 channelID, ENetPacket *packet);
 ```
 
-- **Parameters:**
-  - `peer`: The target peer to which the packet will be sent.
-  - `channelID`: The channel ID on which to send the packet.
-  - `packet`: The packet to send.
-- **Returns:** `0` on success, `< 0` on failure.
+- **Paramètres :**
+  - `peer` : Le pair cible auquel le paquet sera envoyé.
+  - `channelID` : L'ID du canal sur lequel envoyer le paquet.
+  - `packet` : Le paquet à envoyer.
+- **Retourne :** `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_peer_receive`
 
-_Receives the next packet from a specific peer, if available._
+_Reçoit le prochain paquet d'un pair spécifique, s'il est disponible._
 
 ```c
 ENET_API ENetPacket *enet_peer_receive(ENetPeer *peer, enet_uint8 *channelID);
 ```
 
-- **Parameters:**
-  - `peer`: The peer from which to receive the packet.
-  - `channelID`: A pointer to an `enet_uint8` where the channel ID of the received packet will be stored.
-- **Returns:** A pointer to the received `ENetPacket`, or `NULL` if no packet is available.
+- **Paramètres :**
+  - `peer` : Le pair dont recevoir le paquet.
+  - `channelID` : Un pointeur vers un `enet_uint8` où l'ID du canal du paquet reçu sera stocké.
+- **Retourne :** Un pointeur vers le `ENetPacket` reçu, ou `NULL` si aucun paquet n'est disponible.
 
 <br /><br />
 
 ### `enet_peer_ping`
 
-_Sends a ping to a peer._
+_Envoie un ping à un pair._
 
 ```c
 ENET_API void enet_peer_ping(ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to ping.
-- **Remarks:** This function can be used to measure the round-trip time or to keep the connection alive.
+- **Paramètres :**
+  - `peer` : Le pair à pinguer.
+- **Remarques :** Cette fonction peut être utilisée pour mesurer le temps de trajet aller-retour ou pour maintenir la connexion active.
 
 <br /><br />
 
 ### `enet_peer_ping_interval`
 
-_Sets the interval at which pings are sent to a peer automatically._
+_Définit l'intervalle auquel les pings sont envoyés automatiquement à un pair._
 
 ```c
 ENET_API void enet_peer_ping_interval(ENetPeer *peer, enet_uint32 interval);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which to set the ping interval.
-  - `interval`: The ping interval in milliseconds.
-- **Remarks:** Useful for configuring the keepalive behavior of connections.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel définir l'intervalle de ping.
+  - `interval` : L'intervalle de ping en millisecondes.
+- **Remarques :** Utile pour configurer le comportement de maintien de la connexion.
 
 <br /><br />
 
 ### `enet_peer_timeout`
 
-_Sets the timeout limits for a peer._
+_Définit les limites de délai pour un pair._
 
 ```c
 ENET_API void enet_peer_timeout(ENetPeer *peer, enet_uint32 timeoutLimit, enet_uint32 timeoutMinimum, enet_uint32 timeoutMaximum);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which to set the timeout limits.
-  - `timeoutLimit`: The limit after which the connection is considered timed out.
-  - `timeoutMinimum`: The minimum timeout limit.
-  - `timeoutMaximum`: The maximum timeout limit.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel définir les limites de délai.
+  - `timeoutLimit` : La limite après laquelle la connexion est considérée comme expirée.
+  - `timeoutMinimum` : La limite minimale de délai.
+  - `timeoutMaximum` : La limite maximale de délai.
 
 <br /><br />
 
 ### `enet_peer_reset`
 
-_Resets a peer to its initial state._
+_Réinitialise un pair à son état initial._
 
 ```c
 ENET_API void enet_peer_reset(ENetPeer *peer);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to reset.
-- **Remarks:** This function is typically used to quickly reuse a peer object for a new connection.
+- **Paramètres :**
+  - `peer` : Le pair à réinitialiser.
+- **Remarques :** Cette fonction est généralement utilisée pour réutiliser rapidement un objet pair pour une nouvelle connexion.
 
 <br /><br />
 
 ### `enet_peer_disconnect`
 
-_Initiates a graceful disconnection from a peer._
+_Initie une déconnexion gracieuse d'un pair._
 
 ```c
 ENET_API void enet_peer_disconnect(ENetPeer *peer, enet_uint32 data);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to disconnect.
-  - `data`: An optional user-specified data value that can be retrieved by the peer being disconnected.
+- **Paramètres :**
+  - `peer` : Le pair à déconnecter.
+  - `data` : Une valeur de données spécifiée par l'utilisateur, optionnelle, qui peut être récupérée par le pair déconnecté.
 
 <br /><br />
 
 ### `enet_peer_disconnect_now`
 
-_Immediately disconnects a peer without waiting for any pending transmissions to complete._
+_Déconnecte immédiatement un pair sans attendre la fin des transmissions en attente._
 
 ```c
 ENET_API void enet_peer_disconnect_now(ENetPeer *peer, enet_uint32 data);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to disconnect immediately.
-  - `data`: An optional user-specified data value that can be retrieved by the peer being disconnected.
+- **Paramètres :**
+  - `peer` : Le pair à déconnecter immédiatement.
+  - `data` : Une valeur de données spécifiée par l'utilisateur, optionnelle, qui peut être récupérée par le pair déconnecté.
 
 <br /><br />
 
 ### `enet_peer_disconnect_later`
 
-_Schedules a disconnection from a peer to occur after all sent packets have been delivered._
+_Programme une déconnexion d'un pair après que tous les paquets envoyés ont été livrés._
 
 ```c
 ENET_API void enet_peer_disconnect_later(ENetPeer *peer, enet_uint32 data);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to disconnect later.
-  - `data`: An optional user-specified data value that can be retrieved by the peer being disconnected.
+- **Paramètres :**
+  - `peer` : Le pair à déconnecter plus tard.
+  - `data` : Une valeur de données spécifiée par l'utilisateur, optionnelle, qui peut être récupérée par le pair déconnecté.
 
 <br /><br />
 
 ### `enet_peer_throttle_configure`
 
-_Configures packet throttle settings for a peer._
+_Configure les paramètres de limitation des paquets pour un pair._
 
 ```c
 ENET_API void enet_peer_throttle_configure(ENetPeer *peer, enet_uint32 interval, enet_uint32 acceleration, enet_uint32 deceleration);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which to configure throttle settings.
-  - `interval`: The time window over which the throttle conditions are measured.
-  - `acceleration`: The rate at which the packet throttle value is increased when conditions allow.
-  - `deceleration`: The rate at which the packet throttle value is decreased when conditions require.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel configurer les paramètres de limitation.
+  - `interval` : La fenêtre temporelle sur laquelle les conditions de limitation sont mesurées.
+  - `acceleration` : Le taux auquel la valeur de limitation des paquets est augmentée lorsque les conditions le permettent.
+  - `deceleration` : Le taux auquel la valeur de limitation des paquets est diminuée lorsque les conditions l'exigent.
 
 <br /><br />
 
 ### `enet_peer_reset_queues`
 
-_Resets the packet queues for a peer._
+_Réinitialise les files d'attente de paquets pour un pair._
 
 ```c
 extern void enet_peer_reset_queues(ENetPeer *peer);
 ```
 
-- **Description**: This function clears all packet queues associated with the peer, effectively resetting its communication state.
-- **Parameters**:
-  - `peer`: Pointer to the peer whose packet queues are to be reset.
+- **Description** : Cette fonction vide toutes les files d'attente de paquets associées au pair, réinitialisant efficacement son état de communication.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair dont les files d'attente de paquets doivent être réinitialisées.
 
 <br /><br />
 
 ### `enet_peer_has_outgoing_commands`
 
-_Checks if there are outgoing commands that need to be sent to a peer._
+_Vérifie s'il y a des commandes sortantes qui doivent être envoyées à un pair._
 
 ```c
 extern int enet_peer_has_outgoing_commands(ENetPeer *peer);
 ```
 
-- **Description**: Determines whether there are any commands in the outgoing queue that have not yet been sent to the peer. This is useful for deciding whether to flush the host or continue accumulating commands.
-- **Parameters**:
-  - `peer`: Pointer to the peer being checked for outgoing commands.
-- **Returns**: `1` if there are outgoing commands, `0` otherwise.
+- **Description** : Détermine s'il y a des commandes dans la file d'attente sortante qui n'ont pas encore été envoyées au pair. Utile pour décider s'il faut vider l'hôte ou continuer à accumuler des commandes.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair vérifié pour les commandes sortantes.
+- **Retourne :** `1` s'il y a des commandes sortantes, `0` sinon.
 
 <br /><br />
 
 ### `enet_peer_setup_outgoing_command`
 
-_Prepare an outgoing command to be sent to a peer._
+_Prépare une commande sortante à envoyer à un pair._
 
 ```c
 extern void enet_peer_setup_outgoing_command (ENetPeer *peer, ENetOutgoingCommand *command);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to which the command is to be sent.
-  - `command`: The outgoing command to be set up.
+- **Paramètres :**
+  - `peer` : Le pair auquel la commande doit être envoyée.
+  - `command` : La commande sortante à configurer.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   ENetOutgoingCommand command;
-  // Initialize command...
+  // Initialiser la commande...
   enet_peer_setup_outgoing_command(peer, &command);
   ```
 
@@ -643,20 +639,20 @@ extern void enet_peer_setup_outgoing_command (ENetPeer *peer, ENetOutgoingComman
 
 ### `enet_peer_queue_outgoing_command`
 
-_Queue an outgoing command for transmission to a peer._
+_Met en file d'attente une commande sortante pour la transmission à un pair._
 
 ```c
 extern ENetOutgoingCommand * enet_peer_queue_outgoing_command (ENetPeer *peer, const ENetProtocol *protocol, ENetPacket *packet, enet_uint32 offset, enet_uint16 length);
 ```
 
-- **Parameters:**
-  - `peer`: The peer to which the command will be sent.
-  - `protocol`: The protocol command to be sent.
-  - `packet`: The packet to be sent with the command.
-  - `offset`: The offset within the packet where the command starts.
-  - `length`: The length of the command data.
+- **Paramètres :**
+  - `peer` : Le pair auquel la commande sera envoyée.
+  - `protocol` : La commande de protocole à envoyer.
+  - `packet` : Le paquet à envoyer avec la commande.
+  - `offset` : Le décalage dans le paquet où la commande commence.
+  - `length` : La longueur des données de la commande.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   ENetPacket *packet = enet_packet_create(data, length, ENET_PACKET_FLAG_RELIABLE);
   enet_peer_queue_outgoing_command(peer, &protocol, packet, 0, packet->dataLength);
@@ -666,21 +662,21 @@ extern ENetOutgoingCommand * enet_peer_queue_outgoing_command (ENetPeer *peer, c
 
 ### `enet_peer_queue_incoming_command`
 
-_Queue an incoming command received from a peer._
+_Met en file d'attente une commande entrante reçue d'un pair._
 
 ```c
 extern ENetIncomingCommand * enet_peer_queue_incoming_command (ENetPeer *peer, const ENetProtocol *protocol, const void *data, size_t dataLength, enet_uint32 flags, enet_uint32 fragmentCount);
 ```
 
-- **Parameters:**
-  - `peer`: The peer from which the command was received.
-  - `protocol`: The protocol command received.
-  - `data`: The command data received.
-  - `dataLength`: The length of the command data.
-  - `flags`: The flags associated with the incoming command.
-  - `fragmentCount`: The number of fragments for the command.
+- **Paramètres :**
+  - `peer` : Le pair dont la commande a été reçue.
+  - `protocol` : La commande de protocole reçue.
+  - `data` : Les données de la commande reçue.
+  - `dataLength` : La longueur des données de la commande.
+  - `flags` : Les drapeaux associés à la commande entrante.
+  - `fragmentCount` : Le nombre de fragments pour la commande.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   enet_peer_queue_incoming_command(peer, &protocol, receivedData, dataLength, flags, fragmentCount);
   ```
@@ -689,18 +685,18 @@ extern ENetIncomingCommand * enet_peer_queue_incoming_command (ENetPeer *peer, c
 
 ### `enet_peer_queue_acknowledgement`
 
-_Queue an acknowledgement for a received command._
+_Met en file d'attente un accusé de réception pour une commande reçue._
 
 ```c
 extern ENetAcknowledgement * enet_peer_queue_acknowledgement (ENetPeer *peer, const ENetProtocol *protocol, enet_uint16 sentTime);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which the acknowledgement is being queued.
-  - `protocol`: The protocol command being acknowledged.
-  - `sentTime`: The time the command was sent.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel l'accusé de réception est mis en file d'attente.
+  - `protocol` : La commande de protocole accusée de réception.
+  - `sentTime` : L'heure à laquelle la commande a été envoyée.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   enet_peer_queue_acknowledgement(peer, &protocol, sentTime);
   ```
@@ -709,18 +705,18 @@ extern ENetAcknowledgement * enet_peer_queue_acknowledgement (ENetPeer *peer, co
 
 ### `enet_peer_dispatch_incoming_unreliable_commands`
 
-_Dispatch all incoming unreliable commands for a peer._
+_Dispatche toutes les commandes entrantes non fiables pour un pair._
 
 ```c
 extern void enet_peer_dispatch_incoming_unreliable_commands (ENetPeer *peer, ENetChannel *channel, ENetIncomingCommand *command);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which the commands are being dispatched.
-  - `channel`: The channel on which the commands were received.
-  - `command`: The first command in the queue of incoming unreliable commands.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel les commandes sont dispatchées.
+  - `channel` : Le canal sur lequel les commandes ont été reçues.
+  - `command` : La première commande dans la file d'attente des commandes entrantes non fiables.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   enet_peer_dispatch_incoming_unreliable_commands(peer, &channel, &command);
   ```
@@ -729,46 +725,46 @@ extern void enet_peer_dispatch_incoming_unreliable_commands (ENetPeer *peer, ENe
 
 ### `enet_peer_dispatch_incoming_reliable_commands`
 
-_Dispatch all incoming reliable commands for a peer._
+_Dispatche toutes les commandes entrantes fiables pour un pair._
 
 ```c
 extern void enet_peer_dispatch_incoming_reliable_commands (ENetPeer *peer, ENetChannel *channel, ENetIncomingCommand *command);
 ```
 
-- **Parameters:**
-  - `peer`: The peer for which the commands are being dispatched.
-  - `channel`: The channel on which the commands were received.
-  - `command`: The first command in the queue of incoming reliable commands.
+- **Paramètres :**
+  - `peer` : Le pair pour lequel les commandes sont dispatchées.
+  - `channel` : Le canal sur lequel les commandes ont été reçues.
+  - `command` : La première commande dans la file d'attente des commandes entrantes fiables.
 
-- **Example Usage:**
+- **Exemple d'utilisation :**
   ```c
   enet_peer_dispatch_incoming_reliable_commands(peer, &channel, &command);
   ```
 
 <br /><br />
 
-#### `enet_peer_on_connect`
+### `enet_peer_on_connect`
 
-_Handles the event of a peer connecting._
+_Gère l'événement de connexion d'un pair._
 
 ```c
 extern void enet_peer_on_connect(ENetPeer *peer);
 ```
 
-- **Description**: This function is called when a peer successfully connects. It is responsible for initializing any state specific to the new connection.
-- **Parameters**:
-  - `peer`: Pointer to the peer that has just connected.
+- **Description** : Cette fonction est appelée lorsqu'un pair se connecte avec succès. Elle est responsable de l'initialisation de tout état spécifique à la nouvelle connexion.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair qui vient de se connecter.
 
 <br /><br />
 
-#### `enet_peer_on_disconnect`
+### `enet_peer_on_disconnect`
 
-_Handles the event of a peer disconnecting._
+_Gère l'événement de déconnexion d'un pair._
 
 ```c
 extern void enet_peer_on_disconnect(ENetPeer *peer);
 ```
 
-- **Description**: Invoked when a peer disconnects or is disconnected. It cleans up the peer's state and prepares it for potential re-use.
-- **Parameters**:
-  - `peer`: Pointer to the peer that is disconnecting.
+- **Description** : Invoquée lorsqu'un pair se déconnecte ou est déconnecté. Elle nettoie l'état du pair et le prépare pour une éventuelle réutilisation.
+- **Paramètres :**
+  - `peer` : Pointeur vers le pair en cours de déconnexion.

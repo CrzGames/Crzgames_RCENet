@@ -1,45 +1,44 @@
+# Documentation de l'API Temps RCENet
 
-# RCENet Time API Documentation
+Bienvenue dans la documentation de l'API Temps RCENet. Cette section fournit des informations détaillées sur la gestion du temps au sein de la bibliothèque RCENet, mettant en évidence les fonctions liées à la mesure et à la gestion du temps.
 
-Welcome to the RCENet Time API documentation. This section provides detailed information on managing time within the RCENet library, highlighting functions related to time measurement and management.
+## Vue d'ensemble
 
-## Overview
-
-Time management is crucial in networked applications for tasks such as measuring round-trip times, implementing timeouts, and scheduling events. RCENet provides a simple yet effective set of functions to work with time in a cross-platform manner.
+La gestion du temps est cruciale dans les applications réseau pour des tâches telles que la mesure des temps de trajet aller-retour, la mise en œuvre de délais d'expiration et la planification d'événements. RCENet fournit un ensemble de fonctions simples mais efficaces pour travailler avec le temps de manière multiplateforme.
 
 <br /><br />
 
-## Functions
+## Fonctions
 
 ### `enet_time_get`
 
-_Returns the current wall-time in milliseconds._
+_Retourne le temps actuel en millisecondes._
 
-This function returns the current time as a number of milliseconds. The initial value is unspecified unless set by `enet_time_set`. This can be used for timing operations, implementing timeouts, or measuring intervals.
+Cette fonction retourne le temps actuel sous forme de nombre de millisecondes. La valeur initiale n'est pas spécifiée sauf si définie par `enet_time_set`. Elle peut être utilisée pour des opérations de chronométrage, la mise en œuvre de délais d'expiration ou la mesure d'intervalles.
 
 ```c
 ENET_API enet_uint32 enet_time_get(void);
 ```
 
-- **Returns:** The current time in milliseconds.
+- **Retourne :** Le temps actuel en millisecondes.
 
 <br /><br />
 
 ### `enet_time_set`
 
-_Sets the current wall-time in milliseconds._
+_Définit le temps actuel en millisecondes._
 
-This function allows manually setting the current wall-time, which can be useful in scenarios where synchronized time management is needed across different components of an application.
+Cette fonction permet de définir manuellement le temps actuel, ce qui peut être utile dans les scénarios où une gestion du temps synchronisée est nécessaire entre différents composants d'une application.
 
 ```c
 ENET_API void enet_time_set(enet_uint32 time);
 ```
 
-- **Parameters:**
-  - `time`: The new current time in milliseconds.
+- **Paramètres :**
+  - `time` : Le nouveau temps actuel en millisecondes.
 
 <br /><br />
 
 ## Conclusion
 
-The RCENet Time API provides essential functionalities for handling time-related tasks in networked applications, offering both time retrieval and setting capabilities. Proper time management is key to achieving efficient communication and ensuring timely execution of network operations.
+L'API Temps RCENet fournit des fonctionnalités essentielles pour gérer les tâches liées au temps dans les applications réseau, offrant des capacités de récupération et de définition du temps. Une gestion appropriée du temps est essentielle pour assurer une communication efficace et une exécution opportune des opérations réseau.

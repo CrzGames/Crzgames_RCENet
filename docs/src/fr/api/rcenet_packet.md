@@ -1,27 +1,25 @@
+# Documentation de l'API Paquet RCENet
 
-# RCENet Packet API Documentation
+Bienvenue dans la documentation de l'API Paquet RCENet. Cette section fournit un guide approfondi sur la gestion des paquets au sein de RCENet, mettant en évidence les structures clés, les énumérations et les types de rappels essentiels pour la transmission et la réception de paquets.
 
-Welcome to the RCENet Packet API documentation. This section provides an in-depth guide on packet management within RCENet, highlighting key structures, enumerations, and callback types essential for packet transmission and reception.
+## Vue d'ensemble
 
-## Overview
-
-The RCENet library offers a comprehensive approach to packet handling, emphasizing reliability, sequencing, and efficiency. This document explores the core components of packet communication in RCENet, including packet flags, callbacks for packet events, and the `ENetPacket` structure.
+La bibliothèque RCENet offre une approche complète pour la gestion des paquets, mettant l'accent sur la fiabilité, le séquençage et l'efficacité. Ce document explore les composants principaux de la communication par paquets dans RCENet, y compris les drapeaux de paquets, les rappels pour les événements de paquets et la structure `ENetPacket`.
 
 <br /><br />
 
-
-## Enumerations
+## Énumérations
 
 ### `ENetPacketFlag`
 
-Defines flags to control packet behavior in ENet. These flags specify important characteristics for packet delivery and processing.
+Définit les drapeaux pour contrôler le comportement des paquets dans ENet. Ces drapeaux spécifient des caractéristiques importantes pour la livraison et le traitement des paquets.
 
-- **Flags:**
-  - `ENET_PACKET_FLAG_RELIABLE`: Ensures the packet must be received by the destination. Retransmissions are made until the packet is delivered.
-  - `ENET_PACKET_FLAG_UNSEQUENCED`: Indicates the packet will not be sequenced with other packets. Not supported for reliable packets.
-  - `ENET_PACKET_FLAG_NO_ALLOCATE`: Signals that the packet will not allocate data; the user must provide memory for the packet data.
-  - `ENET_PACKET_FLAG_UNRELIABLE_FRAGMENT`: Allows the packet to be fragmented using unreliable transmissions if its size exceeds the maximum transmission unit (MTU).
-  - `ENET_PACKET_FLAG_SENT`: Indicates if the packet has been sent from all queues it was inserted into.
+- **Drapeaux :**
+  - `ENET_PACKET_FLAG_RELIABLE` : Garantit que le paquet doit être reçu par la destination. Des retransmissions sont effectuées jusqu'à ce que le paquet soit livré.
+  - `ENET_PACKET_FLAG_UNSEQUENCED` : Indique que le paquet ne sera pas séquencé avec les autres paquets. Non pris en charge pour les paquets fiables.
+  - `ENET_PACKET_FLAG_NO_ALLOCATE` : Signale que le paquet n'allouera pas de données ; l'utilisateur doit fournir la mémoire pour les données du paquet.
+  - `ENET_PACKET_FLAG_UNRELIABLE_FRAGMENT` : Permet au paquet d'être fragmenté en utilisant des transmissions non fiables si sa taille dépasse l'unité de transmission maximale (MTU).
+  - `ENET_PACKET_FLAG_SENT` : Indique si le paquet a été envoyé à partir de toutes les files d'attente dans lesquelles il a été inséré.
 
 ```c
 typedef enum _ENetPacketFlag
@@ -40,17 +38,17 @@ typedef enum _ENetPacketFlag
 
 ### `ENetPacket`
 
-Represents an ENet packet. This packet contains data to be sent or received over the network.
+Représente un paquet ENet. Ce paquet contient les données à envoyer ou à recevoir sur le réseau.
 
-- **Fields:**
-  - `size_t referenceCount`: Reference count used internally by ENet for packet memory management.
-  - `enet_uint32 flags`: Packet flags, combining `ENetPacketFlag` values to specify packet behavior.
-  - `enet_uint8 * data`: Pointer to the allocated packet data.
-  - `size_t dataLength`: Length of the data contained in the packet.
-  - `ENetPacketFreeCallback freeCallback`: Callback function called when the packet is no longer used.
-  - `void * userData`: User data that can be freely modified by the application.
-  - `enet_uint32 remainingFragments`: Number of unacknowledged fragments. When this number reaches 0, `acknowledgeCallback` is triggered.
-  - `ENetPacketAcknowledgedCallback acknowledgeCallback`: Callback function called when a reliable packet has been acknowledged by the recipient.
+- **Champs :**
+  - `size_t referenceCount` : Compteur de références utilisé en interne par ENet pour la gestion de la mémoire des paquets.
+  - `enet_uint32 flags` : Drapeaux du paquet, combinant les valeurs de `ENetPacketFlag` pour spécifier le comportement du paquet.
+  - `enet_uint8 * data` : Pointeur vers les données allouées du paquet.
+  - `size_t dataLength` : Longueur des données contenues dans le paquet.
+  - `ENetPacketFreeCallback freeCallback` : Fonction de rappel appelée lorsque le paquet n'est plus utilisé.
+  - `void * userData` : Données utilisateur qui peuvent être librement modifiées par l'application.
+  - `enet_uint32 remainingFragments` : Nombre de fragments non confirmés. Lorsque ce nombre atteint 0, `acknowledgeCallback` est déclenché.
+  - `ENetPacketAcknowledgedCallback acknowledgeCallback` : Fonction de rappel appelée lorsqu'un paquet fiable a été confirmé par le destinataire.
 
 ```c
 typedef struct _ENetPacket
@@ -68,12 +66,11 @@ typedef struct _ENetPacket
 
 <br /><br />
 
-
-## Callback Types
+## Types de rappels
 
 ### `ENetPacketAcknowledgedCallback`
 
-A callback function type called when a packet is acknowledged by the recipient. This callback allows for specific actions to be taken upon packet acknowledgment.
+Un type de fonction de rappel appelé lorsqu'un paquet est confirmé par le destinataire. Ce rappel permet d'effectuer des actions spécifiques lors de la confirmation du paquet.
 
 ```c
 typedef void (ENET_CALLBACK * ENetPacketAcknowledgedCallback) (struct _ENetPacket *);
@@ -83,7 +80,7 @@ typedef void (ENET_CALLBACK * ENetPacketAcknowledgedCallback) (struct _ENetPacke
 
 ### `ENetPacketFreeCallback`
 
-A callback function type called when a packet is freed. This callback allows for specific actions to be taken when freeing a packet's memory, such as releasing user-allocated resources.
+Un type de fonction de rappel appelé lorsqu'un paquet est libéré. Ce rappel permet d'effectuer des actions spécifiques lors de la libération de la mémoire d'un paquet, comme la libération des ressources allouées par l'utilisateur.
 
 ```c
 typedef void (ENET_CALLBACK * ENetPacketFreeCallback) (struct _ENetPacket *);
@@ -91,180 +88,179 @@ typedef void (ENET_CALLBACK * ENetPacketFreeCallback) (struct _ENetPacket *);
 
 <br /><br />
 
-
-## Functions
+## Fonctions
 
 ### `enet_packet_create`
 
-_Creates a new packet for transmission._
+_Crée un nouveau paquet pour la transmission._
 
 ```c
 ENET_API ENetPacket * enet_packet_create (const void * data, size_t dataLength, enet_uint32 flags);
 ```
 
-- **Parameters:**
-  - `data`: The data to be included in the packet.
-  - `dataLength`: The length of the data in bytes.
-  - `flags`: Packet flags to control the packet's delivery and handling.
+- **Paramètres :**
+  - `data` : Les données à inclure dans le paquet.
+  - `dataLength` : La longueur des données en octets.
+  - `flags` : Drapeaux du paquet pour contrôler la livraison et le traitement du paquet.
 
-- **Returns:** A pointer to the newly created `ENetPacket`, or NULL on failure.
+- **Retourne :** Un pointeur vers le nouveau paquet `ENetPacket` créé, ou NULL en cas d'échec.
 
 <br /><br />
 
 ### `enet_packet_destroy`
 
-_Destroys a packet._
+_Détruit un paquet._
 
 ```c
 ENET_API void enet_packet_destroy (ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to be destroyed.
+- **Paramètres :**
+  - `packet` : Le paquet à détruire.
 
 <br /><br />
 
 ### `enet_packet_resize`
 
-_Resizes the data in a packet._
+_Redimensionne les données dans un paquet._
 
 ```c
 ENET_API int enet_packet_resize (ENetPacket * packet, size_t dataLength);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to be resized.
-  - `dataLength`: The new size for the packet data.
+- **Paramètres :**
+  - `packet` : Le paquet à redimensionner.
+  - `dataLength` : La nouvelle taille pour les données du paquet.
 
-- **Returns:** `0` on success, `< 0` on failure.
+- **Retourne :** `0` en cas de succès, `< 0` en cas d'échec.
 
 <br /><br />
 
 ### `enet_crc32`
 
-_Computes the CRC32 (Cyclic Redundancy Check) for the given buffers._
+_Calcule le CRC32 (contrôle de redondance cyclique) pour les tampons donnés._
 
 ```c
 ENET_API enet_uint32 enet_crc32 (const ENetBuffer * buffers, size_t bufferCount);
 ```
 
-- **Parameters:**
-  - `buffers`: An array of buffers over which to compute the CRC32.
-  - `bufferCount`: The number of buffers in the array.
+- **Paramètres :**
+  - `buffers` : Un tableau de tampons sur lesquels calculer le CRC32.
+  - `bufferCount` : Le nombre de tampons dans le tableau.
 
-- **Returns:** The computed CRC32 value.
+- **Retourne :** La valeur CRC32 calculée.
 
 <br /><br />
 
 ### `enet_packet_get_data`
 
-_Retrieves the data contained in a packet._
+_Récupère les données contenues dans un paquet._
 
 ```c
 ENET_API void* enet_packet_get_data(const ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet from which to retrieve the data.
+- **Paramètres :**
+  - `packet` : Le paquet dont récupérer les données.
 
-- **Returns:** A pointer to the data contained in the packet.
+- **Retourne :** Un pointeur vers les données contenues dans le paquet.
 
 <br /><br />
 
 ### `enet_packet_get_user_data`
 
-_Retrieves user-defined data associated with a packet._
+_Récupère les données définies par l'utilisateur associées à un paquet._
 
 ```c
 ENET_API void* enet_packet_get_user_data(const ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet from which to retrieve the user data.
+- **Paramètres :**
+  - `packet` : Le paquet dont récupérer les données utilisateur.
 
-- **Returns:** A pointer to the user data.
+- **Retourne :** Un pointeur vers les données utilisateur.
 
 <br /><br />
 
 ### `enet_packet_set_user_data`
 
-_Associates user-defined data with a packet._
+_Associer des données définies par l'utilisateur à un paquet._
 
 ```c
 ENET_API void enet_packet_set_user_data(ENetPacket * packet, void * userData);
 ```
 
-- **Parameters:**
-  - `packet`: The packet with which to associate the user data.
-  - `userData`: The user data to associate with the packet.
+- **Paramètres :**
+  - `packet` : Le paquet auquel associer les données utilisateur.
+  - `userData` : Les données utilisateur à associer au paquet.
 
 <br /><br />
 
 ### `enet_packet_get_length`
 
-_Retrieves the length of the data contained in a packet._
+_Récupère la longueur des données contenues dans un paquet._
 
 ```c
 ENET_API int enet_packet_get_length(const ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet from which to retrieve the data length.
+- **Paramètres :**
+  - `packet` : Le paquet dont récupérer la longueur des données.
 
-- **Returns:** The length of the packet data.
+- **Retourne :** La longueur des données du paquet.
 
 <br /><br />
 
 ### `enet_packet_set_acknowledge_callback`
 
-_Sets a callback function to be called when the packet is acknowledged._
+_Définit une fonction de rappel à appeler lorsque le paquet est confirmé._
 
 ```c
 ENET_API void enet_packet_set_acknowledge_callback(ENetPacket * packet, ENetPacketAcknowledgedCallback callback);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to associate with the acknowledge callback.
-  - `callback`: The callback function to be called upon acknowledgment.
+- **Paramètres :**
+  - `packet` : Le paquet à associer au rappel de confirmation.
+  - `callback` : La fonction de rappel à appeler lors de la confirmation.
 
 <br /><br />
 
 ### `enet_packet_set_free_callback`
 
-_Sets a callback function to be called when the packet is freed._
+_Définit une fonction de rappel à appeler lorsque le paquet est libéré._
 
 ```c
 ENET_API void enet_packet_set_free_callback(ENetPacket * packet, ENetPacketFreeCallback callback);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to associate with the free callback.
-  - `callback`: The callback function to be called when the packet is freed.
+- **Paramètres :**
+  - `packet` : Le paquet à associer au rappel de libération.
+  - `callback` : La fonction de rappel à appeler lorsque le paquet est libéré.
 
 <br /><br />
 
 ### `enet_packet_check_references`
 
-_Checks if a packet is still referenced within ENet._
+_Vérifie si un paquet est toujours référencé dans ENet._
 
 ```c
 ENET_API int enet_packet_check_references(const ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to check for references.
+- **Paramètres :**
+  - `packet` : Le paquet à vérifier pour les références.
 
-- **Returns:** `1` if the packet is still referenced, `0` otherwise.
+- **Retourne :** `1` si le paquet est toujours référencé, `0` sinon.
 
 <br /><br />
 
 ### `enet_packet_dispose`
 
-_Disposes of a packet and its associated resources._
+_Supprime un paquet et ses ressources associées._
 
 ```c
 ENET_API void enet_packet_dispose(ENetPacket * packet);
 ```
 
-- **Parameters:**
-  - `packet`: The packet to dispose of.
+- **Paramètres :**
+  - `packet` : Le paquet à supprimer.

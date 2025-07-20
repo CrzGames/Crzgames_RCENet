@@ -1,80 +1,73 @@
-# RCENet General API Documentation
+# Documentation de l'API Générale RCENet
 
-Welcome to the RCENet General API documentation. This section provides detailed information about the general functions available in RCENet for initializing and managing the library's global state, as well as querying version information.
+Bienvenue dans la documentation de l'API Générale RCENet. Cette section fournit des informations détaillées sur les fonctions générales disponibles dans RCENet pour l'initialisation et la gestion de l'état global de la bibliothèque, ainsi que pour l'interrogation des informations de version.
 
-## Overview
+## Vue d'ensemble
 
-Before utilizing any of the functions or features provided by RCENet for network communication, the library must be properly initialized. This documentation covers the necessary steps to initialize and deinitialize RCENet, along with how to override default callbacks and check the library version.
+Avant d'utiliser l'une des fonctions ou fonctionnalités fournies par RCENet pour la communication réseau, la bibliothèque doit être correctement initialisée. Cette documentation couvre les étapes nécessaires pour initialiser et désinitialiser RCENet, ainsi que la manière de remplacer les rappels par défaut et de vérifier la version de la bibliothèque.
 
 <br /><br />
 
+## Fonctions
 
-## Functions
-
-### Initialization and Deinitialization
+### Initialisation et Désinitialisation
 <br />
 
 #### `enet_initialize`
-_Initializes ENet globally. Must be called before using any functions in ENet._
+_Initialise ENet globalement. Doit être appelé avant d'utiliser toute fonction dans ENet._
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_initialize(void);
   ```
 
-- **Parameters**: None.
+- **Paramètres** : Aucun.
 
-- **Returns**: `0` on success, `< 0` on failure. Indicates whether ENet was initialized successfully.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec. Indique si ENet a été initialisé avec succès.
 
 <br /><br />
 
 #### `enet_initialize_with_callbacks`
-_Initializes ENet globally with user-overridden callbacks. This function should be called instead of `enet_initialize()` if custom callbacks are needed._
+_Initialise ENet globalement avec des rappels définis par l'utilisateur. Cette fonction doit être appelée à la place de `enet_initialize()` si des rappels personnalisés sont nécessaires._
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_initialize_with_callbacks(ENetVersion version, const ENetCallbacks *inits);
   ```
 
-- **Parameters**:
-  - `version`: The constant `ENET_VERSION` should be supplied to ensure compatibility.
-  - `inits`: A pointer to an `ENetCallbacks` structure that allows the user to override certain internal functions. Any `NULL` callbacks will use ENet's defaults.
+- **Paramètres** :
+  - `version` : La constante `ENET_VERSION` doit être fournie pour garantir la compatibilité.
+  - `inits` : Un pointeur vers une structure `ENetCallbacks` qui permet à l'utilisateur de remplacer certaines fonctions internes. Les rappels `NULL` utiliseront les valeurs par défaut d'ENet.
 
-- **Returns**: `0` on success, `< 0` on failure. It allows for more granular initialization based on user needs.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d'échec. Permet une initialisation plus granulaire en fonction des besoins de l'utilisateur.
 
 <br /><br />
 
 #### `enet_deinitialize`
-_Shuts down ENet globally. Should be called when a program that has initialized ENet exits._
+_Ferme ENet globalement. Doit être appelé lorsque le programme qui a initialisé ENet se termine._
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API void enet_deinitialize(void);
   ```
 
-- **Parameters**: None.
+- **Paramètres** : Aucun.
 
-- **Action**: Cleans up global ENet resources. It is crucial to call this function to avoid resource leaks.
+- **Action** : Nettoie les ressources globales d'ENet. Il est crucial d'appeler cette fonction pour éviter les fuites de ressources.
 
 <br /><br />
 
-### Version Information
+### Informations sur la version
 <br />
 
 #### `enet_linked_version`
-_Returns the version number of the linked ENet library._
+_Retourne le numéro de version de la bibliothèque ENet liée._
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API ENetVersion enet_linked_version(void);
   ```
 
-- **Parameters**: None.
+- **Paramètres** : Aucun.
 
-- **Returns**: The version number of the ENet library. This can be useful for debugging or ensuring compatibility with certain library versions.
-
-<br /><br />
-
-## Conclusion
-
-The RCENet General API plays a crucial role in the initialization and management of the ENet library's overall operation. Proper initialization is essential for the successful use of the library's network communication features. For further information or assistance, please refer to the official RCENet documentation or the ENet programming guide.
+- **Retourne** : Le numéro de version de la bibliothèque ENet. Cela peut être utile pour le débogage ou pour garantir la compatibilité avec certaines versions de la bibliothèque.
