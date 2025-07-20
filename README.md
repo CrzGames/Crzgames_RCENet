@@ -36,13 +36,15 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 | **tvOS** | x86_64 / arm64 (appletvos) - x86_64 / arm64 (appletvsimulator) | tvOS 12.0+ | ✓ |
 | **iOS** | arm64 / arm64e (iphoneos) - arm64 / x86_64 (iphonesimulator) | iOS 12.0+ | ✓ |
 | **Android** | arm64-v8a / armeabi-v7a / x86_64 / x86 | Android 6.0+ | ✓ |
-| **BSD** | x86 / x86_64 | glibc ?+ | ✓ |
-| **Linux** | x86 / x86_64 / arm / arm64 | glibc ?+ | ✓ |
-| **Haiku** | x86 / x86_64 | glibc ?+ | ✓ |
-| **Solaris** | x86 / x86_64 | glibc ?+ | ✓ |
-| **Xbox** | x64 | Xbox One+ |  |
-| **Nintendo Switch** | arm64 | Nintendo Switch+ |  |
-| **Playstation** | x64 | Playstation4+ |  |
+| **BSD** | x86 / x86_64 | glibc 2.35+ | ✓ |
+| **Linux** | x86 / x86_64 / arm / arm64 | glibc 2.35+ | ✓ |
+| **Haiku** | x86 / x86_64 | glibc 2.35+ | ✓ |
+| **Solaris** | x86 / x86_64 | glibc 2.35+ | ✓ |
+| **Steam Linux** | x64 / arm64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
+| **Steam Deck** | x64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
+| **Xbox** | x64 | Xbox Série X|S+ |  |
+| **Nintendo Switch** | arm64 | Nintendo Switch 1+ |  |
+| **Playstation** | x64 | Playstation 5+ |  |
 
 <br /><br /><br /><br />
 
@@ -60,6 +62,8 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 | **BSD** | `.a / .so` | Clang | static / shared |
 | **Haiku** | `.a / .so` | Clang | static / shared |
 | **Solaris** | `? / ?` | Clang | ? / ? |
+| **Steam Linux** | `.a / .so` | GCC | static / shared |
+| **Steam Deck** | `.a / .so` | GCC | static / shared |
 | **Xbox** |  |  |
 | **Nintendo Switch** |  |  |
 | **Playstation** |  |  |

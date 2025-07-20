@@ -17,7 +17,7 @@ hero:
       link: /fr/api/rcenet
     - theme: alt
       text: Voir sur Github
-      link: https://github.com/corentin35000/Crzgames_RCENet
+      link: https://github.com/CrzGames/Crzgames_RCENet
 
 features:
   - icon: '🚀'

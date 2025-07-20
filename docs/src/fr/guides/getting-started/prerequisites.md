@@ -12,7 +12,7 @@ Bienvenue sur la librairie RCENet !
 ## Setup Environment RCENet
 ### Cloner le projet
 ```bash
-git clone git@github.com:corentin35000/Crzgames_RCENet.git
+git clone git@github.com:CrzGames/Crzgames_RCENet.git
 ```
 
 <br />
@@ -24,5 +24,5 @@ git clone git@github.com:corentin35000/Crzgames_RCENet.git
 <br />
 
 ### Setup Instructions
-- Compiler RCENet via les scripts de build à la racine du repository via xMake ou CMake.
-- Ou récupérer les librairies déjà pré-compiler : https://github.com/corentin35000/Crzgames_RCENet/releases 
+- Compiler RCENet via les scripts de build à la racine du repository via xMake.
+- Ou récupérer les librairies déjà pré-compiler : https://github.com/CrzGames/Crzgames_RCENet/releases 

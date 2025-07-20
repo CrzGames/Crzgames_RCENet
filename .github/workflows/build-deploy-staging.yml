@@ -22,10 +22,10 @@ jobs:
         config:
         # Les 4 premier obligé de mettre platform: linux, même si c'est : slr3-sniper-x64 et slr3-sniper-arm64
         # Version des containers : 
-        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250408.124536" }
-        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250408.124536" }
-        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250408.124536" }
-        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250408.124536" }
+        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250616.139560" }
+        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250616.139560" }
+        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250616.139560" }
+        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250616.139560" }
         - { runner: ubuntu-22.04,   platform: bsd,                                 arch: x86_64, kind: shared }
         - { runner: ubuntu-22.04,   platform: bsd,                                 arch: x86_64, kind: static }
         - { runner: ubuntu-22.04,   platform: bsd,                                 arch: i386, kind: shared }
@@ -50,10 +50,10 @@ jobs:
         - { runner: ubuntu-22.04,   platform: linux,                               arch: arm, kind: static }
         - { runner: ubuntu-22.04,   platform: linux,                               arch: arm64, kind: shared }
         - { runner: ubuntu-22.04,   platform: linux,                               arch: arm64, kind: static }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: i386, kind: shared }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: i386, kind: static }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: x86_64, kind: shared }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: x86_64, kind: static }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: shared }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: static }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: x86_64, kind: shared }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: x86_64, kind: static }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86, kind: shared }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86, kind: static }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86_64, kind: shared }

@@ -1,24 +1,23 @@
-# RCENet Address API Documentation
+# Documentation de l’API RCENet Address
 
-Welcome to the RCENet Address API documentation. This section provides a comprehensive guide to managing network addresses with RCENet, covering essential functions and structures for IP address manipulation and interaction within the RCENet library.
+Bienvenue dans la documentation de l’API RCENet Address. Cette section fournit un guide complet pour gérer les adresses réseau avec RCENet, couvrant les fonctions et structures essentielles pour la manipulation et l’interaction des adresses IP au sein de la bibliothèque RCENet.
 
-## Overview
+## Vue d’ensemble
 
-The RCENet library simplifies network programming by abstracting complex networking operations, including address management. This document focuses on the `ENetAddress` structure and associated functions, which play a critical role in network communication by representing network endpoints.
+La bibliothèque RCENet simplifie la programmation réseau en abstrahant des opérations réseau complexes, y compris la gestion des adresses. Ce document se concentre sur la structure `ENetAddress` et les fonctions associées, qui jouent un rôle clé dans la communication réseau en représentant les points de terminaison réseau.
 
 <br /><br />
-
 
 ## Structure
 
 ### `ENetAddress`
 
-Represents a network endpoint with an IP address and a port number.
+Représente un point de terminaison réseau avec une adresse IP et un numéro de port.
 
-- **Fields:**
-  - `ENetAddressType type`: The type of address (IPv4, IPv6).
-  - `enet_uint16 port`: The port number in host byte order.
-  - `union host`: IP address in network byte order. Use `v4` for IPv4 or `v6` for IPv6.
+- **Champs :**
+  - `ENetAddressType type` : Le type d’adresse (IPv4, IPv6).
+  - `enet_uint16 port` : Le numéro de port en ordre d’octet hôte.
+  - `union host` : Adresse IP en ordre d’octet réseau. Utilisez `v4` pour IPv4 ou `v6` pour IPv6.
 
 ```c
 typedef struct _ENetAddress {
@@ -33,163 +32,158 @@ typedef struct _ENetAddress {
 
 <br /><br />
 
+## Fonctions
 
-## Functions
-
-### Comparison and Validation Functions
+### Fonctions de comparaison et de validation
 <br />
 
 #### `enet_address_equal_host`
-Compares the host part of two addresses to determine if they are equal.
+Compare la partie hôte de deux adresses pour déterminer si elles sont égales.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_equal_host(const ENetAddress * firstAddress, const ENetAddress * secondAddress);
   ```
 
-- **Parameters**:
-  - `firstAddress`: Pointer to the first address to compare.
-  - `secondAddress`: Pointer to the second address to compare.
+- **Paramètres :**
+  - `firstAddress` : Pointeur vers la première adresse à comparer.
+  - `secondAddress` : Pointeur vers la seconde adresse à comparer.
 
-- **Returns**: `1` if the host parts are equal, `0` otherwise.
+- **Retourne** : `1` si les parties hôte sont égales, `0` sinon.
 
 <br /><br />
 
 #### `enet_address_equal`
-Compares two addresses, including their ports, to determine if they are equal.
+Compare deux adresses, y compris leurs ports, pour déterminer si elles sont égales.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_equal(const ENetAddress * firstAddress, const ENetAddress * secondAddress);
   ```
 
-- **Parameters**:
-  - `firstAddress`: Pointer to the first address to compare.
-  - `secondAddress`: Pointer to the second address to compare.
+- **Paramètres :**
+  - `firstAddress` : Pointeur vers la première adresse à comparer.
+  - `secondAddress` : Pointeur vers la seconde adresse à comparer.
 
-- **Returns**: `1` if both the host parts and the ports are equal, `0` otherwise.
+- **Retourne** : `1` si les parties hôte et les ports sont égaux, `0` sinon.
 
 <br /><br />
 
 #### `enet_address_is_any`
-Checks if an address is the special "any" address, which listens on all interfaces.
+Vérifie si une adresse est l’adresse spéciale « any », qui écoute sur toutes les interfaces.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_is_any(const ENetAddress * address);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address to check.
+- **Paramètres :**
+  - `address` : Pointeur vers l’adresse à vérifier.
 
-- **Returns**: `1` if the address is the "any" address, `0` otherwise.
+- **Retourne** : `1` si l’adresse est l’adresse « any », `0` sinon.
 
 <br /><br />
 
 #### `enet_address_is_broadcast`
-Determines if an address is a broadcast address.
+Détermine si une adresse est une adresse de broadcast.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_is_broadcast(const ENetAddress * address);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address to check.
+- **Paramètres :**
+  - `address` : Pointeur vers l’adresse à vérifier.
 
-- **Returns**: `1` if the address is a broadcast address, `0` otherwise.
+- **Retourne** : `1` si l’adresse est une adresse de broadcast, `0` sinon.
 
 <br /><br />
 
 #### `enet_address_is_loopback`
-Checks if an address is a loopback address.
+Vérifie si une adresse est une adresse de loopback.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_is_loopback(const ENetAddress * address);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address to check.
+- **Paramètres :**
+  - `address` : Pointeur vers l’adresse à vérifier.
 
-- **Returns**: `1` if the address is a loopback address, `0` otherwise.
+- **Retourne** : `1` si l’adresse est une adresse de loopback, `0` sinon.
 
 <br /><br />
 
-### Resolution and Conversion Functions
+### Fonctions de résolution et de conversion
 <br />
 
 #### `enet_address_set_host_ip`
-Parses a string IP address and sets the address object.
+Analyse une adresse IP sous forme de chaîne et configure l’objet adresse.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_set_host_ip(ENetAddress * address, const char * hostName);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address object to be set.
-  - `hostName`: IP address in string format.
+- **Paramètres :**
+  - `address` : Pointeur vers l’objet adresse à configurer.
+  - `hostName` : Adresse IP au format chaîne.
 
-- **Returns**: `0` on success, `< 0` on failure.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d’échec.
 
 <br /><br />
 
-
 #### `enet_address_set_host`
-Resolves a hostname to an IP address and stores it in an address object.
+Résout un nom d’hôte en adresse IP et le stocke dans un objet adresse.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_set_host(ENetAddress * address, ENetAddressType type, const char * hostName);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address object to be set.
-  - `type`: Type of the address (IPv4 or IPv6).
-  - `hostName`: Hostname to resolve.
+- **Paramètres :**
+  - `address` : Pointeur vers l’objet adresse à configurer.
+  - `type` : Type de l’adresse (IPv4 ou IPv6).
+  - `hostName` : Nom d’hôte à résoudre.
 
-- **Returns**: `0` on success, `< 0` on failure.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d’échec.
 
 <br /><br />
 
-
 #### `enet_address_get_host_ip`
-Retrieves the printable IP address from an address object.
+Récupère l’adresse IP imprimable à partir d’un objet adresse.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_get_host_ip(const ENetAddress * address, char * hostName, size_t nameLength);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address object.
-  - `hostName`: Buffer to store the printable IP address.
-  - `nameLength`: Length of the buffer.
+- **Paramètres :**
+  - `address` : Pointeur vers l’objet adresse.
+  - `hostName` : Tampon pour stocker l’adresse IP imprimable.
+  - `nameLength` : Longueur du tampon.
 
-- **Returns**: `0` on success, `< 0` on failure.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d’échec.
 
 <br /><br />
 
-
 #### `enet_address_get_host`
-Performs a reverse lookup of the IP address to find the hostname.
+Effectue une résolution inverse de l’adresse IP pour obtenir le nom d’hôte.
 
-- **Prototype**:
+- **Prototype** :
   ```c
   ENET_API int enet_address_get_host(const ENetAddress * address, char * hostName, size_t nameLength);
   ```
 
-- **Parameters**:
-  - `address`: Pointer to the address object.
-  - `hostName`: Buffer to store the hostname.
-  - `nameLength`: Length of the buffer.
+- **Paramètres :**
+  - `address` : Pointeur vers l’objet adresse.
+  - `hostName` : Tampon pour stocker le nom d’hôte.
+  - `nameLength` : Longueur du tampon.
 
-- **Returns**: `0` on success, `< 0` on failure.
+- **Retourne** : `0` en cas de succès, `< 0` en cas d’échec.
 
 <br /><br />
 
-
 ## Conclusion
 
-This documentation aims to elucidate the foundational concepts related to address management in RCENet. For further information or assistance, please consult the official RCENet documentation or the ENet programming guide.
+Cette documentation vise à éclaircir les concepts fondamentaux liés à la gestion des adresses dans RCENet. Pour plus d’informations ou d’assistance, veuillez consulter la documentation officielle de RCENet ou le guide de programmation ENet.
