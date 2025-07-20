@@ -28,6 +28,13 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 <br /><br /><br /><br />
 
 
+## 📚 API Documentation
+- WebSite Production : https://librcenet.crzcommon2.com 
+- WebSite Staging : https://staging.librcenet.crzcommon2.com 
+
+<br /><br /><br /><br />
+
+
 ## 📋 Supported platforms :
 Ensuring that your game runs smoothly requires understanding the minimal system requirements for each platforms. Below are the requirements that users need to meet to experience your game without issues.
 
@@ -69,13 +76,6 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 | **Xbox** |  |  |
 | **Nintendo Switch** |  |  |
 | **Playstation** |  |  |
-
-<br /><br /><br /><br />
-
-
-## 📚 API Documentation
-- WebSite Production : https://librcenet.crzcommon2.com 
-- WebSite Staging : https://staging.librcenet.crzcommon2.com 
 
 <br /><br /><br /><br />
 
