@@ -4,7 +4,7 @@ Bienvenue sur la librairie RCENet !
 
 ## 🛠 Tech Stack
 - C (Langage)
-- CMake ou xMake (Build script)
+- xmake (Build script)
 - Compiler (GCC, CL, Clang, Ninja, NDK)
 
 <br /><br />

@@ -42,7 +42,7 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
 | **Solaris** | x86 / x86_64 | glibc 2.35+ | ✓ |
 | **Steam Linux** | x64 / arm64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
 | **Steam Deck** | x64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
-| **Xbox** | x64 | Xbox Série X|S+ |  |
+| **Xbox** | x64 | Xbox Série X/S+ |  |
 | **Nintendo Switch** | arm64 | Nintendo Switch 1+ |  |
 | **Playstation** | x64 | Playstation 5+ |  |
 

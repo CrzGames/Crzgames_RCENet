@@ -4,7 +4,7 @@ Welcome to the setup guide for the RCENet library. This guide will walk you thro
 
 ## 🛠 Tech Stack
 - C (Language)
-- CMake or xMake (Build script)
+- xmake (Build script)
 - Compiler (GCC, CL, Clang, Ninja, NDK)
 
 <br /><br />
