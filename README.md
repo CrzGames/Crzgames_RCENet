@@ -22,7 +22,7 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 ## 🛠 Tech Stack
 - C (Language)
 - CI / CD (Github Actions)
-- xMake (Build script)
+- xmake (Build script)
 - Compiler (GCC, CL, Clang, Ninja, NDK)
 
 <br /><br /><br /><br />
