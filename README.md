@@ -91,7 +91,7 @@ Ensuring that your game runs smoothly requires understanding the minimal system 
   # Windows :
   1. Requirements : Windows >= 10
   1. Download and Install Visual Studio == 2022 (MSVC >= v143 + Windows SDK >= 10) : https://visualstudio.microsoft.com/fr/downloads/
-  2. Download and Install CMake >= 3.25 : https://cmake.org/download/ and add PATH ENVIRONMENT OR xMake.
+  2. Download and Install xmake.
 
   
   # Linux :
