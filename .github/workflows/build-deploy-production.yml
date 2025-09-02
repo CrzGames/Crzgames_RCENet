@@ -65,7 +65,7 @@ jobs:
     runs-on: ${{ matrix.config.runner }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup dependencies i386 - Linux / BSD / Haiku
         if: ${{ matrix.config.arch == 'i386' && (matrix.config.platform == 'linux' || matrix.config.platform == 'bsd' || matrix.config.platform == 'haiku') }}
@@ -288,10 +288,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download All Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
 
       - name: Organize Artifacts
         run: |
@@ -398,7 +398,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Node.js latest LTS
         uses: actions/setup-node@v4
@@ -414,7 +414,7 @@ jobs:
         working-directory: ./docs
 
       - name: Deploy files website static for docs API RCENet
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.O2SWITCH_FTP_HOST }}
           username: ${{ secrets.O2SWITCH_FTP_USERNAME }}
