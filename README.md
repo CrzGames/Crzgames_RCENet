@@ -4,7 +4,7 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 
 <br />
 
-## Grande nouveauté par rapport à ENet Original
+## 📋 Grande nouveauté par rapport à ENet Original
 - IPv6 / IPv4
 - Cryptage / Décryptage (ENetEncryptor)
 - Ajout de ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
