@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.2.0...v1.2.1) (2025-09-03)
+
+
+### Bug Fixes
+
+* fixed path ([faa12a0](https://github.com/CrzGames/Crzgames_RCENet/commit/faa12a01c6bc8d4426d0448d458152280c6a4d0a))
+* fixed path ([dd7b502](https://github.com/CrzGames/Crzgames_RCENet/commit/dd7b502441189b136c0c1d2b32199c46b8462533))
+
 ## [1.2.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.1.0...v1.2.0) (2025-09-03)
 
 
