@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.1.0...v1.2.0) (2025-09-03)
+
+
+### Features
+
+* update last commit enet original ([b3f751c](https://github.com/CrzGames/Crzgames_RCENet/commit/b3f751cc1e1dcb1dbefd95f49c1c65b8e6beafa7))
+* update version ([4ba34d4](https://github.com/CrzGames/Crzgames_RCENet/commit/4ba34d47c7b7e9465b192088a46b541c8e766d4f))
+* updating dependencies vitepress for docs ([7ce0020](https://github.com/CrzGames/Crzgames_RCENet/commit/7ce002012d216819be82b8d0787d1d66facc3da8))
+
+
+### Bug Fixes
+
+* fixed docs ([8d7c28a](https://github.com/CrzGames/Crzgames_RCENet/commit/8d7c28ac5bf6f0f15e7d491c61cce978e33d84d7))
+
 ## [1.1.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.0.3...v1.1.0) (2024-08-23)
 
 
