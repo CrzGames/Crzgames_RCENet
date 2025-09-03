@@ -358,7 +358,6 @@ jobs:
           mv librcenet-windows-arm64ec--release-static/lib/*.lib windows/arm64ec/static/
           mv librcenet-windows-x64--release-shared/bin/*.dll windows/x64/shared/
           mv librcenet-windows-x86--release-shared/bin/*.dll windows/x86/shared/
-          mv librcenet-windows-arm--release-shared/bin/*.dll windows/arm/shared/
           mv librcenet-windows-arm64--release-shared/bin/*.dll windows/arm64/shared/
           mv librcenet-windows-arm64ec--release-shared/bin/*.dll windows/arm64ec/shared/
           zip -r librcenet-windows.zip windows/
@@ -385,11 +384,11 @@ jobs:
           tar -czvf librcenet-linux.tar.gz linux/
 
           # Organize Linux SteamRT artifacts
-          mv librcenet-linuxsteamrt-x86_64--release-static/lib/*.a linux-steamrt/x86_64/static/
-          mv librcenet-linuxsteamrt-x86_64--release-shared/lib/*.so linux-steamrt/x86_64/shared/
-          mv librcenet-linuxsteamrt-arm64--release-static/lib/*.a linux-steamrt/arm64/static/
-          mv librcenet-linuxsteamrt-arm64--release-shared/lib/*.so linux-steamrt/arm64/shared/
-          tar -czvf librcenet-linuxsteamrt.tar.gz linux-steamrt/
+          mv librcenet-linux-steamrt-x86_64--release-static/lib/*.a linux-steamrt/x86_64/static/
+          mv librcenet-linux-steamrt-x86_64--release-shared/lib/*.so linux-steamrt/x86_64/shared/
+          mv librcenet-linux-steamrt-arm64--release-static/lib/*.a linux-steamrt/arm64/static/
+          mv librcenet-linux-steamrt-arm64--release-shared/lib/*.so linux-steamrt/arm64/shared/
+          tar -czvf librcenet-linux-steamrt.tar.gz linux-steamrt/
 
           # Organize tvOS artifacts
           mv librcenet-tvos-arm64,x86_64-appletvsimulator-release-static/*.a tvos/arm64-x86_64-appletvsimulator/static/
