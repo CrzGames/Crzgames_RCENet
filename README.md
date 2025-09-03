@@ -4,17 +4,17 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 
 <br />
 
-## 📋 Great novelty compared to ENet Original
+## Grande nouveauté par rapport à ENet Original
 - IPv6 / IPv4
-- Encrypt / Decrypt (ENetEncryptor)
-- Add ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
-- ENET_PROTOCOL_MAXIMUM_PEER_ID 4096 replace to 65535 peers simultaneously by host
-- PRs for fixes that were never applied to the original ENet that are included in it
-- New documentation with Vitepress
-- New API
-- Addition of a lot of comments in the sources and includes, a JSDOC style
-- The protocol of the original ENet lib has been modified so will not work with the original protocol
-- Other improvements and fixes
+- Cryptage / Décryptage (ENetEncryptor)
+- Ajout de ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
+- ENET_PROTOCOL_MAXIMUM_PEER_ID 4096 remplacé par 65535 pairs simultanés par hôte
+- PR pour les corrections qui n'ont jamais été appliquées à l'ENet d'origine et qui y sont incluses
+- Nouvelle documentation avec Vitepress
+- Nouvelle API
+- Ajout de nombreux commentaires dans les sources et les inclusions, dans le style JSDOC
+- Le protocole de la bibliothèque ENet d'origine a été modifié et ne fonctionnera donc pas avec le protocole d'origine
+- Autres améliorations et corrections
 
 <br /><br /><br /><br />
 
@@ -35,8 +35,8 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 <br /><br /><br /><br />
 
 
-## 📋 Supported platforms :
-Ensuring that your game runs smoothly requires understanding the minimal system requirements for each platforms. Below are the requirements that users need to meet to experience your game without issues.
+## 📋 Plateformes prises en charge :
+Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la configuration minimale requise pour chaque plateforme. Vous trouverez ci-dessous la configuration requise pour que les utilisateurs puissent profiter pleinement de votre jeu.
 
 | Platform | Architectures | System Version | Compatible |
 |----------|---------------|----------------|------------|
