@@ -72,12 +72,13 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Prepare variant suffix
+        shell: bash
         run: |
           if [ -n "${{ matrix.config.variant }}" ]; then
-            echo "VARIANT_SUFFIX=-${{ matrix.config.variant }}" >> $GITHUB_ENV
+            echo "VARIANT_SUFFIX=-${{ matrix.config.variant }}" >> "$GITHUB_ENV"
           else
-            echo "VARIANT_SUFFIX=" >> $GITHUB_ENV
-          f
+            echo "VARIANT_SUFFIX=" >> "$GITHUB_ENV"
+          fi
 
       - name: Setup dependencies i386 - Linux / BSD / Haiku
         if: ${{ matrix.config.arch == 'i386' && (matrix.config.platform == 'linux' || matrix.config.platform == 'bsd' || matrix.config.platform == 'haiku') }}
