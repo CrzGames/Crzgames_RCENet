@@ -18,34 +18,38 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - { runner: ubuntu-latest,  platform: bsd,                                 arch: x86_64, kind: shared }
-        - { runner: ubuntu-latest,  platform: bsd,                                 arch: x86_64, kind: static }
-        - { runner: ubuntu-latest,  platform: bsd,                                 arch: i386, kind: shared }
-        - { runner: ubuntu-latest,  platform: bsd,                                 arch: i386, kind: static }
-        - { runner: windows-latest, platform: windows,                             arch: x86, kind: shared }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: x86, kind: static }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: x64, kind: shared }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: x64, kind: static }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm, kind: shared }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm, kind: static }     # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm64, kind: shared }   # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm64, kind: static }   # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm64ec, kind: shared } # Windows MSVC
-        - { runner: windows-latest, platform: windows,                             arch: arm64ec, kind: static } # Windows MSVC
-        - { runner: windows-latest, platform: mingw,                               arch: i386, msys_arch: i686, msys_msystem: mingw32, kind: static }     # Windows MinGW
-        - { runner: windows-latest, platform: mingw,                               arch: x86_64, msys_arch: x86_64, msys_msystem: mingw64, kind: static } # Windows MinGW
-        - { runner: ubuntu-latest,  platform: linux,                               arch: i386, kind: shared }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: i386, kind: static }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: x86_64, kind: shared }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: x86_64, kind: static }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: arm, kind: shared }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: arm, kind: static }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: arm64, kind: shared }
-        - { runner: ubuntu-latest,  platform: linux,                               arch: arm64, kind: static }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: i386, kind: shared }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: i386, kind: static }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: x86_64, kind: shared }
-        - { runner: ubuntu-latest,  platform: haiku,                               arch: x86_64, kind: static }
+        # Les 4 premier obligé de mettre platform: linux, même si c'est : slr3-sniper-x64 et slr3-sniper-arm64
+        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250826.159138", variant: steamrt }
+        - { runner: ubuntu-latest,  platform: linux,   arch: x86_64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk:3.0.20250826.159138", variant: steamrt }
+        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: shared, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250826.159138", variant: steamrt }
+        - { runner: ubuntu-24.04-arm, platform: linux, arch: arm64, kind: static, container: "registry.gitlab.steamos.cloud/steamrt/sniper/sdk/arm64:3.0.20250826.159138", variant: steamrt }
+        - { runner: ubuntu-22.04,   platform: bsd,                                 arch: x86_64, kind: shared }
+        - { runner: ubuntu-22.04,   platform: bsd,                                 arch: x86_64, kind: static }
+        - { runner: ubuntu-22.04,   platform: bsd,                                 arch: i386, kind: shared }
+        - { runner: ubuntu-22.04,   platform: bsd,                                 arch: i386, kind: static }
+        - { runner: windows-2025, platform: windows,                             arch: x86, kind: shared }     # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: x86, kind: static }     # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: x64, kind: shared }     # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: x64, kind: static }     # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: arm, kind: static }     # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: arm64, kind: shared }   # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: arm64, kind: static }   # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: arm64ec, kind: shared } # Windows MSVC
+        - { runner: windows-2025, platform: windows,                             arch: arm64ec, kind: static } # Windows MSVC
+        - { runner: windows-2025, platform: mingw,                               arch: i386, msys_arch: i686, msys_msystem: mingw32, kind: static }     # Windows MinGW
+        - { runner: windows-2025, platform: mingw,                               arch: x86_64, msys_arch: x86_64, msys_msystem: mingw64, kind: static } # Windows MinGW
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: i386, kind: shared }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: i386, kind: static }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: x86_64, kind: shared }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: x86_64, kind: static }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: arm, kind: shared }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: arm, kind: static }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: arm64, kind: shared }
+        - { runner: ubuntu-22.04,   platform: linux,                               arch: arm64, kind: static }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: shared }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: static }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: x86_64, kind: shared }
+        - { runner: ubuntu-22.04,  platform: haiku,                               arch: x86_64, kind: static }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86, kind: shared }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86, kind: static }
         - { runner: ubuntu-latest,  platform: android,                             arch: x86_64, kind: shared }
@@ -54,18 +58,26 @@ jobs:
         - { runner: ubuntu-latest,  platform: android,                             arch: armeabi-v7a, kind: static  }
         - { runner: ubuntu-latest,  platform: android,                             arch: arm64-v8a, kind: shared }
         - { runner: ubuntu-latest,  platform: android,                             arch: arm64-v8a, kind: static }
-        - { runner: macos-14,       platform: macos,         sdk: macosx,          arch: "x86_64,arm64", kind: shared }
-        - { runner: macos-14,       platform: macos,         sdk: macosx,          arch: "x86_64,arm64", kind: static }
-        - { runner: macos-14,       platform: ios,           sdk: iphoneos,        arch: "arm64,arm64e", kind: static }
-        - { runner: macos-14,       platform: ios,           sdk: iphonesimulator, arch: "x86_64,arm64", kind: static }
-        - { runner: macos-14,       platform: tvos,          sdk: appletvos,       arch: "arm64,x86_64", kind: static }
-        - { runner: macos-14,       platform: tvos,          sdk: appletvsimulator,arch: "arm64,x86_64", kind: static }
+        - { runner: macos-15,       platform: macos,         sdk: macosx,          arch: "x86_64,arm64", kind: shared }
+        - { runner: macos-15,       platform: macos,         sdk: macosx,          arch: "x86_64,arm64", kind: static }
+        - { runner: macos-15,       platform: ios,           sdk: iphoneos,        arch: "arm64,arm64e", kind: static }
+        - { runner: macos-15,       platform: ios,           sdk: iphonesimulator, arch: "x86_64,arm64", kind: static }
+        - { runner: macos-15,       platform: tvos,          sdk: appletvos,       arch: "arm64,x86_64", kind: static }
+        - { runner: macos-15,       platform: tvos,          sdk: appletvsimulator,arch: "arm64,x86_64", kind: static }
         mode: [release]
     name: ${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
     runs-on: ${{ matrix.config.runner }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
+
+      - name: Prepare variant suffix
+        run: |
+          if [ -n "${{ matrix.config.variant }}" ]; then
+            echo "VARIANT_SUFFIX=-${{ matrix.config.variant }}" >> $GITHUB_ENV
+          else
+            echo "VARIANT_SUFFIX=" >> $GITHUB_ENV
+          f
 
       - name: Setup dependencies i386 - Linux / BSD / Haiku
         if: ${{ matrix.config.arch == 'i386' && (matrix.config.platform == 'linux' || matrix.config.platform == 'bsd' || matrix.config.platform == 'haiku') }}
@@ -86,14 +98,14 @@ jobs:
           update: true
 
       - name: Setup new version xCode and Setup Command Line Tools - macOS / iOS / tvOS
-        # Doc : https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
-        if: matrix.config.runner == 'macos-14'
+        # Doc : https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+        if: matrix.config.runner == 'macos-15'
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.4.0'
+          xcode-version: '16.4.0'
 
       - name: Determine SDK Path and set SDKROOT - macOS / iOS / tvOS
-        if: matrix.config.runner == 'macos-14'
+        if: matrix.config.runner == 'macos-15'
         run: |
           xcodebuild -showsdks
           sdk="${{ matrix.config.sdk }}"
@@ -106,7 +118,7 @@ jobs:
         id: setup-ndk
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r26d
+          ndk-version: r28c
           link-to-sdk: true
           add-to-path: true
 
@@ -247,7 +259,7 @@ jobs:
         if: ${{ matrix.config.platform != 'tvos' && matrix.config.platform != 'ios' && matrix.config.platform != 'macos' }}
         uses: actions/upload-artifact@v4
         with:
-          name: librcenet-${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
+          name: librcenet-${{ matrix.config.platform }}${{ env.VARIANT_SUFFIX }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/
           retention-days: 1
 
@@ -305,6 +317,7 @@ jobs:
           mkdir -p linux/{x86_64,i386,arm,arm64}/{shared,static}
           mkdir -p haiku/{x86_64,i386}/{shared,static}
           mkdir -p tvos/{arm64-x86_64-appletvsimulator,arm64-x86_64-appletvos}/static
+          mkdir -p linux-steamrt/{x86_64,arm64}/{shared,static}
 
           # Organize Haiku artifacts
           mv librcenet-haiku-x86_64--release-static/lib/*.a haiku/x86_64/static/
@@ -370,6 +383,13 @@ jobs:
           mv librcenet-linux-arm64--release-shared/lib/*.so linux/arm64/shared/
           tar -czvf librcenet-linux.tar.gz linux/
 
+          # Organize Linux SteamRT artifacts
+          mv librcenet-linuxsteamrt-x86_64--release-static/lib/*.a linux-steamrt/x86_64/static/
+          mv librcenet-linuxsteamrt-x86_64--release-shared/lib/*.so linux-steamrt/x86_64/shared/
+          mv librcenet-linuxsteamrt-arm64--release-static/lib/*.a linux-steamrt/arm64/static/
+          mv librcenet-linuxsteamrt-arm64--release-shared/lib/*.so linux-steamrt/arm64/shared/
+          tar -czvf librcenet-linuxsteamrt.tar.gz linux-steamrt/
+
           # Organize tvOS artifacts
           mv librcenet-tvos-arm64,x86_64-appletvsimulator-release-static/*.a tvos/arm64-x86_64-appletvsimulator/static/
           mv librcenet-tvos-arm64,x86_64-appletvos-release-static/*.a tvos/arm64-x86_64-appletvos/static/
@@ -391,6 +411,7 @@ jobs:
             librcenet-linux.tar.gz
             librcenet-bsd.tar.gz
             librcenet-haiku.zip
+            librcenet-linux-steamrt.tar.gz
             include.tar.gz
 
   build_deploy_website:
