@@ -4,8 +4,8 @@
 */
 #include <string.h>
 #define ENET_BUILDING_LIB 1
-#include "rcenet/utility.h"
-#include "rcenet/enet.h"
+#include "rcenet/rcenet_utility.h"
+#include "rcenet/rcenet_enet.h"
 
 /** @defgroup peer ENet peer functions 
     @{
