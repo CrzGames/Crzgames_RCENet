@@ -3,7 +3,7 @@
  @brief ENet linked list functions
 */
 #define ENET_BUILDING_LIB 1
-#include "rcenet/rcenet_enet.h"
+#include "rcenet/enet.h"
 
 #include <stdio.h>
 #include <string.h>
