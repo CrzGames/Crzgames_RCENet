@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.3.0...v1.3.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* fixed ci ([6260f13](https://github.com/CrzGames/Crzgames_RCENet/commit/6260f13f8541f5aafef701e2fb18f758e0556f26))
+
 ## [1.3.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.2.1...v1.3.0) (2026-01-27)
 
 
