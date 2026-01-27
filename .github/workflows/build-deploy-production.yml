@@ -422,11 +422,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Install Node.js latest LTS
-<<<<<<< HEAD
-        uses: actions/setup-node@v5
-=======
         uses: actions/setup-node@v6
->>>>>>> develop
         with:
           node-version: 'lts/*'
 
