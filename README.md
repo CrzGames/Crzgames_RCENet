@@ -49,8 +49,8 @@ Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la confi
 | **Linux** | x86 / x86_64 / arm / arm64 | glibc 2.35+ | ✓ |
 | **Haiku** | x86 / x86_64 | glibc 2.35+ | ✓ |
 | **Solaris** | x86 / x86_64 | glibc 2.35+ | ✓ |
-| **Steam Linux** | x64 / arm64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
-| **Steam Deck** | x64 | Steam Linux Runtime 3.0 (Sniper) | ✓ |
+| **Steam Linux** | x64 / arm64 | Steam Linux Runtime 4.0 | ✓ |
+| **Steam Deck** | x64 | Steam Linux Runtime 4.0 | ✓ |
 | **Xbox** | x64 | Xbox Série X/S+ |  |
 | **Nintendo Switch** | arm64 | Nintendo Switch 1+ |  |
 | **Playstation** | x64 | Playstation 5+ |  |
