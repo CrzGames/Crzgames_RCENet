@@ -379,11 +379,11 @@ jobs:
           tar -czvf librcenet-linux.tar.gz linux/
 
           # Organize Linux SteamRT artifacts
-          mv librcenet-linux-steamrt-x86_64--release-static/lib/*.a linux-steamrt/x86_64/static/
-          mv librcenet-linux-steamrt-x86_64--release-shared/lib/*.so linux-steamrt/x86_64/shared/
-          mv librcenet-linux-steamrt-arm64--release-static/lib/*.a linux-steamrt/arm64/static/
-          mv librcenet-linux-steamrt-arm64--release-shared/lib/*.so linux-steamrt/arm64/shared/
-          tar -czvf librcenet-linux-steamrt.tar.gz linux-steamrt/
+          mv librcenet-linux-steamrt4-x86_64--release-static/lib/*.a linux-steamrt4/x86_64/static/
+          mv librcenet-linux-steamrt4-x86_64--release-shared/lib/*.so linux-steamrt4/x86_64/shared/
+          mv librcenet-linux-steamrt4-arm64--release-static/lib/*.a linux-steamrt4/arm64/static/
+          mv librcenet-linux-steamrt4-arm64--release-shared/lib/*.so linux-steamrt4/arm64/shared/
+          tar -czvf librcenet-linux-steamrt4.tar.gz linux-steamrt4/
 
           # Organize tvOS artifacts
           mv librcenet-tvos-arm64,x86_64-appletvsimulator-release-static/*.a tvos/arm64-x86_64-appletvsimulator/static/
@@ -406,7 +406,7 @@ jobs:
             librcenet-linux.tar.gz
             librcenet-bsd.tar.gz
             librcenet-haiku.zip
-            librcenet-linux-steamrt.tar.gz
+            librcenet-linux-steamrt4.tar.gz
             include.tar.gz
 
   build_deploy_website:
