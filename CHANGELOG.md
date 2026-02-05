@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.3.2...v1.3.3) (2026-02-05)
+
+
+### Bug Fixes
+
+* fixed ci for steamrt4 ([b730f8e](https://github.com/CrzGames/Crzgames_RCENet/commit/b730f8e85edbecb1db7240f465a6b68bbf7746db))
+* fixed ci for steamrt4 ([03a634c](https://github.com/CrzGames/Crzgames_RCENet/commit/03a634c9d79a0d1af0ac4e20c87b1960c7809dc1))
+
 ## [1.3.2](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.3.1...v1.3.2) (2026-02-05)
 
 
