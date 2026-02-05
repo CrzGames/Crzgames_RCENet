@@ -163,10 +163,10 @@ jobs:
         if: ${{ matrix.config.sdk == 'appletvsimulator' }}
         # Pas de library shared pour tvOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=appletvos --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --appledev=simulator --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=appletvos --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --appledev=simulator --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - iOS (iphoneos)
         if: ${{ matrix.config.sdk == 'iphoneos' }}
@@ -181,10 +181,10 @@ jobs:
         if: ${{ matrix.config.sdk == 'iphonesimulator' }}
         # Pas de library shared pour iOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=iphoneos --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --appledev=simulator --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=iphoneos --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --appledev=simulator --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Build project with xMake
         run: xmake
@@ -313,7 +313,7 @@ jobs:
           mkdir -p linux/{x86_64,i386,arm,arm64}/{shared,static}
           mkdir -p haiku/{x86_64,i386}/{shared,static}
           mkdir -p tvos/{arm64-x86_64-appletvsimulator,arm64-x86_64-appletvos}/static
-          mkdir -p linux-steamrt/{x86_64,arm64}/{shared,static}
+          mkdir -p linux-steamrt4/{x86_64,arm64}/{shared,static}
 
           # Organize Haiku artifacts
           mv librcenet-haiku-x86_64--release-static/lib/*.a haiku/x86_64/static/
@@ -368,21 +368,21 @@ jobs:
           tar -czvf librcenet-ios.tar.gz ios/
 
           # Organize Linux artifacts
-          mv librcenet-linux-i386--release-static/lib/*.a linux/i386/static/
-          mv librcenet-linux-i386--release-shared/lib/*.so linux/i386/shared/
-          mv librcenet-linux-x86_64--release-static/lib/*.a linux/x86_64/static/
-          mv librcenet-linux-x86_64--release-shared/lib/*.so linux/x86_64/shared/
-          mv librcenet-linux-arm--release-static/lib/*.a linux/arm/static/
-          mv librcenet-linux-arm--release-shared/lib/*.so linux/arm/shared/
-          mv librcenet-linux-arm64--release-static/lib/*.a linux/arm64/static/
-          mv librcenet-linux-arm64--release-shared/lib/*.so linux/arm64/shared/
+          mv librcenet-linux-steamrt4-i386--release-static/lib/*.a linux/i386/static/
+          mv librcenet-linux-steamrt4-i386--release-shared/lib/*.so linux/i386/shared/
+          mv librcenet-linux-steamrt4-x86_64--release-static/lib/*.a linux/x86_64/static/
+          mv librcenet-linux-steamrt4-x86_64--release-shared/lib/*.so linux/x86_64/shared/
+          mv librcenet-linux-steamrt4-arm--release-static/lib/*.a linux/arm/static/
+          mv librcenet-linux-steamrt4-arm--release-shared/lib/*.so linux/arm/shared/
+          mv librcenet-linux-steamrt4-arm64--release-static/lib/*.a linux/arm64/static/
+          mv librcenet-linux-steamrt4-arm64--release-shared/lib/*.so linux/arm64/shared/
           tar -czvf librcenet-linux.tar.gz linux/
 
           # Organize Linux SteamRT artifacts
-          mv librcenet-linux-steamrt4-x86_64--release-static/lib/*.a linux-steamrt4/x86_64/static/
-          mv librcenet-linux-steamrt4-x86_64--release-shared/lib/*.so linux-steamrt4/x86_64/shared/
-          mv librcenet-linux-steamrt4-arm64--release-static/lib/*.a linux-steamrt4/arm64/static/
-          mv librcenet-linux-steamrt4-arm64--release-shared/lib/*.so linux-steamrt4/arm64/shared/
+          mv librcenet-linux-steamrt4-steamrt4-x86_64--release-static/lib/*.a linux-steamrt4/x86_64/static/
+          mv librcenet-linux-steamrt4-steamrt4-x86_64--release-shared/lib/*.so linux-steamrt4/x86_64/shared/
+          mv librcenet-linux-steamrt4-steamrt4-arm64--release-static/lib/*.a linux-steamrt4/arm64/static/
+          mv librcenet-linux-steamrt4-steamrt4-arm64--release-shared/lib/*.so linux-steamrt4/arm64/shared/
           tar -czvf librcenet-linux-steamrt4.tar.gz linux-steamrt4/
 
           # Organize tvOS artifacts
