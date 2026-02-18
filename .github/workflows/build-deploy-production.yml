@@ -305,9 +305,9 @@ jobs:
         run: |
           # Création de dossiers de destination basique
           mkdir -p android/{arm64-v8a,armeabi-v7a,x86,x86_64}/{shared,static}
-          mkdir -p mingw/{x86_64,i386}/static
+          mkdir -p windows-mingw/{x86_64,i386}/static
           mkdir -p bsd/{x86_64,i386}/{shared,static}
-          mkdir -p windows/{x64,x86,arm,arm64,arm64ec}/{shared,static}
+          mkdir -p windows-msvc/{x64,x86,arm,arm64,arm64ec}/{shared,static}
           mkdir -p macos/x86_64-arm64/{shared,static}
           mkdir -p ios/{arm64-arm64e-iphoneos,x86_64-arm64-iphonesimulator}/static
           mkdir -p linux/{x86_64,i386,arm,arm64}/{shared,static}
@@ -333,10 +333,10 @@ jobs:
           mv librcenet-android-x86_64--release-shared/lib/*.so android/x86_64/shared/
           zip -r librcenet-android.zip android/
 
-          # Organize MinGW artifacts
-          mv librcenet-mingw-x86_64--release-static/lib/*.a mingw/x86_64/static/
-          mv librcenet-mingw-i386--release-static/lib/*.a mingw/i386/static/
-          zip -r librcenet-mingw.zip mingw/
+          # Organize Windows MinGW artifacts
+          mv librcenet-mingw-x86_64--release-static/lib/*.a windows-mingw/x86_64/static/
+          mv librcenet-mingw-i386--release-static/lib/*.a windows-mingw/i386/static/
+          zip -r librcenet-windows-mingw.zip windows-mingw/
 
           # Organize BSD artifacts
           mv librcenet-bsd-x86_64--release-static/lib/*.a bsd/x86_64/static/
@@ -345,17 +345,17 @@ jobs:
           mv librcenet-bsd-i386--release-shared/lib/*.so bsd/i386/shared/
           tar -czvf librcenet-bsd.tar.gz bsd/
 
-          # Organize Windows artifacts
-          mv librcenet-windows-x64--release-static/lib/*.lib windows/x64/static/
-          mv librcenet-windows-x86--release-static/lib/*.lib windows/x86/static/
-          mv librcenet-windows-arm--release-static/lib/*.lib windows/arm/static/
-          mv librcenet-windows-arm64--release-static/lib//*.lib windows/arm64/static/
-          mv librcenet-windows-arm64ec--release-static/lib/*.lib windows/arm64ec/static/
-          mv librcenet-windows-x64--release-shared/bin/*.dll windows/x64/shared/
-          mv librcenet-windows-x86--release-shared/bin/*.dll windows/x86/shared/
-          mv librcenet-windows-arm64--release-shared/bin/*.dll windows/arm64/shared/
-          mv librcenet-windows-arm64ec--release-shared/bin/*.dll windows/arm64ec/shared/
-          zip -r librcenet-windows.zip windows/
+          # Organize Windows MSVC artifacts
+          mv librcenet-windows-x64--release-static/lib/*.lib windows-msvc/x64/static/
+          mv librcenet-windows-x86--release-static/lib/*.lib windows-msvc/x86/static/
+          mv librcenet-windows-arm--release-static/lib/*.lib windows-msvc/arm/static/
+          mv librcenet-windows-arm64--release-static/lib//*.lib windows-msvc/arm64/static/
+          mv librcenet-windows-arm64ec--release-static/lib/*.lib windows-msvc/arm64ec/static/
+          mv librcenet-windows-x64--release-shared/bin/*.dll windows-msvc/x64/shared/
+          mv librcenet-windows-x86--release-shared/bin/*.dll windows-msvc/x86/shared/
+          mv librcenet-windows-arm64--release-shared/bin/*.dll windows-msvc/arm64/shared/
+          mv librcenet-windows-arm64ec--release-shared/bin/*.dll windows-msvc/arm64ec/shared/
+          zip -r librcenet-windows-msvc.zip windows-msvc/
 
           # Organize macOS artifacts
           mv librcenet-macos-x86_64,arm64-macosx-release-static/*.a macos/x86_64-arm64/static/
@@ -398,8 +398,8 @@ jobs:
         with:
           files: |
             librcenet-android.zip
-            librcenet-windows.zip
-            librcenet-mingw.zip
+            librcenet-windows-msvc.zip
+            librcenet-windows-mingw.zip
             librcenet-macos.tar.gz
             librcenet-ios.tar.gz
             librcenet-tvos.tar.gz
