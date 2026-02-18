@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.3.3...v1.4.0) (2026-02-18)
+
+
+### Features
+
+* improvement rename dir mingw to windows-mingw and rename windows to windows-msvc ([0afaccb](https://github.com/CrzGames/Crzgames_RCENet/commit/0afaccbcab925d05ef31b6ec70fbc8273c123004))
+* improvement rename dir mingw to windows-mingw and rename windows to windows-msvc ([bf389a6](https://github.com/CrzGames/Crzgames_RCENet/commit/bf389a64d32f87e9a0cad2ece8dd5b2e604dcf68))
+
 ## [1.3.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.3.2...v1.3.3) (2026-02-05)
 
 
