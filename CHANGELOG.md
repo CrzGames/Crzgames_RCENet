@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.4](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.3...v1.4.4) (2026-02-20)
+
+
+### Bug Fixes
+
+* fixed ci for organize artifact ([6263b0a](https://github.com/CrzGames/Crzgames_RCENet/commit/6263b0af1a7cd54b27377868a0dcefd62da286a4))
+
 ## [1.4.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.2...v1.4.3) (2026-02-20)
 
 
