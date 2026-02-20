@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.3](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.2...v1.4.3) (2026-02-20)
+
+
+### Bug Fixes
+
+* check arm32 and 64linux ([2b0aadb](https://github.com/CrzGames/Crzgames_RCENet/commit/2b0aadb9777649391d3cde628ec995270b7730a4))
+* fixed for linux arm64 to aarch64 and arm to armv7 ([a207c3c](https://github.com/CrzGames/Crzgames_RCENet/commit/a207c3c64e4653d929d78e90b57cb45d70c7d203))
+* fixed for linux arm64 to aarch64 and arm to armv7 ([76b6527](https://github.com/CrzGames/Crzgames_RCENet/commit/76b6527e10c51ff3a5238f8f89baf2b2402c9e1c))
+
 ## [1.4.2](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.1...v1.4.2) (2026-02-20)
 
 
