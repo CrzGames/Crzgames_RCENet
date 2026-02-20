@@ -44,10 +44,10 @@ jobs:
         - { runner: ubuntu-22.04,   platform: linux,                               arch: i386, kind: static }
         - { runner: ubuntu-22.04,   platform: linux,                               arch: x86_64, kind: shared }
         - { runner: ubuntu-22.04,   platform: linux,                               arch: x86_64, kind: static }
-        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: arm, kind: shared }
-        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: arm, kind: static }
-        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: arm64, kind: shared }
-        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: arm64, kind: static }
+        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: armv7, kind: shared }
+        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: armv7, kind: static }
+        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: aarch64, kind: shared }
+        - { runner: ubuntu-22.04-arm,   platform: linux,                               arch: aarch64, kind: static }
         - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: shared }
         - { runner: ubuntu-22.04,  platform: haiku,                               arch: i386, kind: static }
         - { runner: ubuntu-22.04,  platform: haiku,                               arch: x86_64, kind: shared }
