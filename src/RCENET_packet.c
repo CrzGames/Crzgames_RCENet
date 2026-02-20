@@ -4,7 +4,7 @@
 */
 #include <string.h>
 #define ENET_BUILDING_LIB 1
-#include "rcenet/enet.h"
+#include "rcenet/RCENET_enet.h"
 
 /** @defgroup Packet ENet packet functions 
     @{ 
