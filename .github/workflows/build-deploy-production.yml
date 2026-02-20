@@ -310,7 +310,7 @@ jobs:
           mkdir -p windows-msvc/{x64,x86,arm,arm64,arm64ec}/{shared,static}
           mkdir -p macos/x86_64-arm64/{shared,static}
           mkdir -p ios/{arm64-arm64e-iphoneos,x86_64-arm64-iphonesimulator}/static
-          mkdir -p linux/{x86_64,i386,arm,arm64}/{shared,static}
+          mkdir -p linux/{x86_64,i386,armv7,aarch64}/{shared,static}
           mkdir -p haiku/{x86_64,i386}/{shared,static}
           mkdir -p tvos/{arm64-x86_64-appletvsimulator,arm64-x86_64-appletvos}/static
           mkdir -p linux-steamrt4/{x86_64,arm64}/{shared,static}
@@ -372,10 +372,10 @@ jobs:
           mv librcenet-linux-i386--release-shared/lib/*.so linux/i386/shared/
           mv librcenet-linux-x86_64--release-static/lib/*.a linux/x86_64/static/
           mv librcenet-linux-x86_64--release-shared/lib/*.so linux/x86_64/shared/
-          mv librcenet-linux-arm--release-static/lib/*.a linux/arm/static/
-          mv librcenet-linux-arm--release-shared/lib/*.so linux/arm/shared/
-          mv librcenet-linux-arm64--release-static/lib/*.a linux/arm64/static/
-          mv librcenet-linux-arm64--release-shared/lib/*.so linux/arm64/shared/
+          mv librcenet-linux-armv7--release-static/lib/*.a linux/armv7/static/
+          mv librcenet-linux-armv7--release-shared/lib/*.so linux/armv7/shared/
+          mv librcenet-linux-aarch64--release-static/lib/*.a linux/aarch64/static/
+          mv librcenet-linux-aarch64--release-shared/lib/*.so linux/aarch64/shared/
           tar -czvf librcenet-linux.tar.gz linux/
 
           # Organize Linux SteamRT4 artifacts
