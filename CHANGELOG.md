@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.1...v1.4.2) (2026-02-20)
+
+
+### Bug Fixes
+
+* fixed ci for runners arm64 linux ([356ff93](https://github.com/CrzGames/Crzgames_RCENet/commit/356ff934825c859fa768f9353fcac9f08f6ad5c6))
+
 ## [1.4.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.0...v1.4.1) (2026-02-20)
 
 
