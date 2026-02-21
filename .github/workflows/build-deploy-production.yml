@@ -9,6 +9,9 @@ on:
       - published
   workflow_dispatch:
 
+env:
+  XMAKE_ROOT: y
+
 jobs:
   build_rcenet:
     container: ${{ matrix.config.container }}
