@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.5](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.4...v1.4.5) (2026-02-21)
+
+
+### Bug Fixes
+
+* add container in ci for steamrt4 ([e3805e4](https://github.com/CrzGames/Crzgames_RCENet/commit/e3805e45195001472e73d942cd6e0b26cb214f14))
+
 ## [1.4.4](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.3...v1.4.4) (2026-02-20)
 
 
