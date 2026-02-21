@@ -11,6 +11,7 @@ on:
 
 jobs:
   build_rcenet:
+    container: ${{ matrix.config.container }}
     defaults:
       run:
         shell: ${{ matrix.config.platform == 'mingw' && 'msys2 {0}' || 'bash' }}
