@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.6](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.5...v1.4.6) (2026-02-21)
+
+
+### Bug Fixes
+
+* fixed ci for xmake ([44b4110](https://github.com/CrzGames/Crzgames_RCENet/commit/44b411062add1f33b73b8ddcc1d769c8866b643a))
+* fixed ci for xmake ([3187f1a](https://github.com/CrzGames/Crzgames_RCENet/commit/3187f1a0cda35530bbc6a021facbe1606f4c53f9))
+
 ## [1.4.5](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.4...v1.4.5) (2026-02-21)
 
 
