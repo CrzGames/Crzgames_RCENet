@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.6...v1.5.0) (2026-02-23)
+
+
+### Features
+
+* up minimum version os for ios, tvos and macos and minimum api level android ([976f41c](https://github.com/CrzGames/Crzgames_RCENet/commit/976f41c83f46ec43b66005fb82d432d4cbd28505))
+
+
+### Bug Fixes
+
+* fixed onnxruntime os min for macos ([b5e61c6](https://github.com/CrzGames/Crzgames_RCENet/commit/b5e61c6aadaef50892d6d1fc4a3b3792e731e4c2))
+
 ## [1.4.6](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.5...v1.4.6) (2026-02-21)
 
 
