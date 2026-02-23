@@ -11,6 +11,12 @@ on:
 
 env:
   XMAKE_ROOT: y
+  MACOS_TARGET_MIN_VERSION_OS: "15.0" # C'est la version minimale ciblé pour macOS
+  IOS_TARGET_MIN_VERSION_OS: "18.0" # C'est la version minimale ciblé pour iOS
+  TVOS_TARGET_MIN_VERSION_OS: "18.0" # C'est la version minimale ciblé pour tvOS
+  XCODE_VERSION: "26.3.0" # C'est la version de Xcode utilisé pour compiler sur macOS / iOS / tvOS, elle doit être compatible avec les versions minimales ciblé (ex: Xcode 26.3 supporte iOS 18, tvOS 18 et macOS 15)
+  ANDROID_API: "28" # C'est la version minimale ciblé pour Android (28 = Android 9.0)
+  ANDROID_NDK_VERSION: "r29" # C'est la version de NDK utilisé pour compiler sur Android, elle doit être compatible avec la version minimale ciblé (ex: NDK r29 supporte Android 9.0)
 
 jobs:
   build_rcenet:
@@ -107,7 +113,7 @@ jobs:
         if: matrix.config.runner == 'macos-26'
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '26.2'
+          xcode-version: ${{ env.XCODE_VERSION }}
 
       - name: Determine SDK Path and set SDKROOT - macOS / iOS / tvOS
         if: matrix.config.runner == 'macos-26'
@@ -123,7 +129,7 @@ jobs:
         id: setup-ndk
         uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r29
+          ndk-version: ${{ env.ANDROID_NDK_VERSION }}
           link-to-sdk: true
           add-to-path: true
 
@@ -142,53 +148,51 @@ jobs:
         if: ${{ matrix.config.platform == 'android' }}
         run:
           # --ndk_sdkver = SDK / API level Android minimal used
-          # Informations : Pour éviter de construire 2 fois pour l'architecture : armeabi-v7a si on construit 
-          # à partir de l'API/SDK 23 d'Android ça sera compatible pour NEON et SANS NEON
-          xmake config --ndk=${{ steps.setup-ndk.outputs.ndk-path }} --ndk_sdkver=23 --plat=${{ matrix.config.platform }} --arch=${{ matrix.config.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake config --ndk=${{ steps.setup-ndk.outputs.ndk-path }} --ndk_sdkver=${{ env.ANDROID_API }} --plat=${{ matrix.config.platform }} --arch=${{ matrix.config.arch }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - macOS
         if: ${{ matrix.config.sdk == 'macosx' }}
         run: |
-          xmake f --plat=${{ matrix.config.sdk }} --arch=arm64 --target_minver=11.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=${{ matrix.config.sdk }} --arch=arm64 --target_minver=${{ env.MACOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=${{ matrix.config.sdk }} --arch=x86_64 --target_minver=11.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=${{ matrix.config.sdk }} --arch=x86_64 --target_minver=${{ env.MACOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - tvOS (appletvos)
         if: ${{ matrix.config.sdk == 'appletvos' }}
         # Pas de library shared pour tvOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=appletvos --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --arch="arm64" --target_minver=${{ env.TVOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=appletvos --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --arch="x86_64" --target_minver=${{ env.TVOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - tvOS (appletvsimulator)
         if: ${{ matrix.config.sdk == 'appletvsimulator' }}
         # Pas de library shared pour tvOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=appletvos --appledev=simulator --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --appledev=simulator --arch="arm64" --target_minver=${{ env.TVOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=appletvos --appledev=simulator --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=appletvos --appledev=simulator --arch="x86_64" --target_minver=${{ env.TVOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - iOS (iphoneos)
         if: ${{ matrix.config.sdk == 'iphoneos' }}
         # Pas de library shared pour iOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=iphoneos --arch=arm64e --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --arch=arm64e --target_minver=${{ env.IOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=iphoneos --arch=arm64 --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --arch=arm64 --target_minver=${{ env.IOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Configure project with xMake - iOS (iphonesimulator)
         if: ${{ matrix.config.sdk == 'iphonesimulator' }}
         # Pas de library shared pour iOS (.dylib) suite au restrictions d'Apple, utiliser .framework, .xcframework ou .a
         run: |
-          xmake f --plat=iphoneos --appledev=simulator --arch="arm64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --appledev=simulator --arch="arm64" --target_minver=${{ env.IOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
           xmake
           xmake install -v -o rcenet2/
-          xmake f --plat=iphoneos --appledev=simulator --arch="x86_64" --target_minver=12.0 --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
+          xmake f --plat=iphoneos --appledev=simulator --arch="x86_64" --target_minver=${{ env.IOS_TARGET_MIN_VERSION_OS }} --mode=${{ matrix.mode }} --kind=${{ matrix.config.kind }} --yes
 
       - name: Build project with xMake
         run: xmake

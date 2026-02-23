@@ -2,7 +2,11 @@
 
 Dernier commit récupérer par rapport à ENet officiel, branche master : `657eaf9`
 
-<br />
+<br /><br />
+
+---
+
+<br /><br />
 
 ## 📋 Grande nouveauté par rapport à ENet Original
 - IPv6 / IPv4
@@ -16,8 +20,11 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 - Le protocole de la bibliothèque ENet d'origine a été modifié et ne fonctionnera donc pas avec le protocole d'origine
 - Autres améliorations et corrections
 
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## 🛠 Tech Stack
 - C (Language)
@@ -25,38 +32,51 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 - xmake (Build script)
 - Compiler (GCC, CL, Clang, Ninja, NDK)
 
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## 📚 API Documentation
-- WebSite Production : https://librcenet.crzcommon2.com 
-- WebSite Staging : https://staging.librcenet.crzcommon2.com 
+- WebSite Production : https://librcenet.crzgames.com 
+- WebSite Staging : https://staging.librcenet.crzgames.com 
 
-<br /><br /><br /><br />
+<br /><br />
 
+---
 
-## 📋 Plateformes prises en charge :
-Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la configuration minimale requise pour chaque plateforme. Vous trouverez ci-dessous la configuration requise pour que les utilisateurs puissent profiter pleinement de votre jeu.
+<br /><br />
+
+## 📋 Plateformes supportées
+
+- 🟢 supporté  
+- 🟡 en cours  
+- 🔴 non supporté  
 
 | Platform | Architectures | System Version | Compatible |
 |----------|---------------|----------------|------------|
-| **Windows** | x86 / x64 / arm / arm64 / arm64ec | Windows Vista+  | ✓          |
-| **macOS** | Intel x86_64 / Apple Silicon arm64 | macOS 11.0+ | ✓ |
-| **tvOS** | x86_64 / arm64 (appletvos) - x86_64 / arm64 (appletvsimulator) | tvOS 12.0+ | ✓ |
-| **iOS/iPadOS** | arm64 / arm64e (iphoneos) - arm64 / x86_64 (iphonesimulator) | iOS 12.0+ | ✓ |
-| **Android** | arm64-v8a / armeabi-v7a / x86_64 / x86 | Android 6.0+ | ✓ |
-| **BSD** | x86 / x86_64 | glibc 2.35+ | ✓ |
-| **Linux** | x86 / x86_64 / arm / arm64 | glibc 2.35+ | ✓ |
-| **Haiku** | x86 / x86_64 | glibc 2.35+ | ✓ |
-| **Solaris** | x86 / x86_64 | glibc 2.35+ | ✓ |
-| **Steam Linux** | x64 / arm64 | Steam Linux Runtime 4.0 | ✓ |
-| **Steam Deck** | x64 | Steam Linux Runtime 4.0 | ✓ |
-| **Xbox** | x64 | Xbox Série X/S+ |  |
-| **Nintendo Switch** | arm64 | Nintendo Switch 1+ |  |
-| **Playstation** | x64 | Playstation 5+ |  |
+| Windows | x86 / x64 / arm / arm64 / arm64ec | Windows Vista+ | 🟢 |
+| macOS | Intel x86_64 / Apple Silicon arm64 | macOS 15.0+ | 🟢 |
+| tvOS | x86_64 / arm64 (appletvos) - x86_64 / arm64 (appletvsimulator) | tvOS 18.0+ | 🟢 |
+| iOS/iPadOS | arm64 / arm64e (iphoneos) - arm64 / x86_64 (iphonesimulator) | iOS/iPadOS 18.0+ | 🟢 |
+| Android | arm64-v8a / armeabi-v7a / x86_64 / x86 | Android 9.0+ | 🟢 |
+| BSD | x86 / x86_64 | glibc 2.35+ | 🟢 |
+| Linux | x86 / x86_64 / arm / arm64 | glibc 2.35+ | 🟢 |
+| Haiku | x86 / x86_64 | glibc 2.35+ | 🟢 |
+| Solaris | x86 / x86_64 | glibc 2.35+ | 🟢 |
+| Steam Linux | x64 / arm64 | Steam Linux Runtime 4.0 | 🟢 |
+| Steam Deck | x64 | Steam Linux Runtime 4.0 | 🟢 |
+| Xbox Série X/S | x64 | - | 🔴 |
+| Nintendo Switch 1 | arm64 | - | 🔴 |
+| Nintendo Switch 2 | arm64 | - | 🔴 |
+| Playstation 5 | x64 | - | 🔴 |
 
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## 📦 RCENet Packages Distribution
 | Platform | Format | Compiler | Type |
@@ -77,8 +97,11 @@ Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la confi
 | **Nintendo Switch** |  |  |
 | **Playstation** |  |  |
 
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## ⚙️ Setup Environment Development
 1. Clone the project repository using the following commands :
@@ -93,47 +116,56 @@ Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la confi
   1. Download and Install Visual Studio == 2022 (MSVC >= v143 + Windows SDK >= 10) : https://visualstudio.microsoft.com/fr/downloads/
   2. Download and Install xmake.
 
+
   
   # Linux :
-  1. Run command (replace debian for name) : sudo usermod -aG sudo debian
-  2. Download and Install brew : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  3. Après l'installation de homebrew il faut importer les variables d'environnement et installer les deux librairies : 
-    echo '# Set PATH, MANPATH, etc., for Homebrew.' >> /home/debian/.bashrc && 
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/debian/.bashrc && 
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" &&
-    sudo apt-get install -y build-essential &&
-    brew install gcc
-  4. Download and Install xmake.
+  1. Requirements : glibc >= 2.35.0 (Exemple : Ubuntu >= 22.04 OR Debian >= 12.0), checker via : ldd --version
+  2. Download and Install (gcc, g++, make..) :
+    sudo apt update
+    sudo apt install -y build-essential
+  3. Download and Install xmake.
+
 
 
   # macOS :
-  1. Requirements : MacOS X >= 15.5.0
+  1. Requirements : MacOS X >= 15.0.0
   2. Download and Install xCode >= 16.4.0
   3. Download and Install Command Line Tools : xcode-select --install
-  4. Download and Install xmake.
+  4. Download and Install brew : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  5. Checker les versions des SDK : 
+    xcrun --sdk iphoneos --show-sdk-version
+    xcrun --sdk macosx --show-sdk-version
+  6. Download and Install xmake.
 
 
-  # Android (run in Windows) :
-  1. Download and Install : Android Studio 2025.1.1 or newer
-  2. Add environment variable: ANDROID_HOME for path SDK Android (SDK Manager path)
-  3. Download and Install xmake.
-  4. Download and Install Java JDK LTS (Oracle) == 17.0.10.
 
-  # Android (run in Unix) :
-  1. TODO: A faire
+  # Android (Unix / Windows) :
+  1. Download and Install : Android Studio 2025.3.1 or newer
+  2. Add environment variable: ANDROID_HOME for path SDK Android (SDK Manager path), sous Windows en général : C:\Users\Corentin\AppData\Local\Android\Sdk
+  3. Ouvrir Android Studio et installer certains composants du SDK : Android v16.0, Android SDK v36.1.0, NDK v29.0.14206865, Android SDK Command Line v20, CMake v3.30.3.
+  4. Download and Install Java JDK 17 LTS (Temurin) : https://adoptium.net/fr/temurin/releases?version=17&os=any&arch=any  (Pendant l installation du SDK Java de Temurin cocher la case pour ajouté automatiquement la variable d environnement JAVA_HOME)
+  5. Si vous avez oublié de coché la case pour ajouter automatiquement la variable d environnement "JAVA_HOME", sous Windows en général : C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot
+  6. Download and Install xmake.
+
 
 
   # iOS (only macOS) :
-  1. Requirements : MacOS X >= 15.5.0
-  2. Download and Install Command Line Tools : xcode-select --install
-  3. Download and Install xCode >= 16.4.0
-  4. Download and Install SDK iOS >= 18.0.0
+  1. Requirements : MacOS X >= 15.0.0
+  2. Download and Install xCode >= 16.4.0
+  3. Download and Install SDK iOS >= 18.0.0
+  4. Download and Install Command Line Tools : xcode-select --install
   5. Download and Install brew : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  6. Download and Install xmake.
+  6. Checker les versions des SDK : 
+    xcrun --sdk iphoneos --show-sdk-version
+    xcrun --sdk macosx --show-sdk-version
+  7. Download and Install xmake.
   ```
   
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## 🔄 Cycle Development
 1. Generate project for Executable (Visual Studio 2022, xCode...)
@@ -141,8 +173,11 @@ Pour garantir le bon fonctionnement de votre jeu, vous devez connaître la confi
 3. Edit or add files in 'src' or 'include' folder
 4. Run project
   
-<br /><br /><br /><br />
+<br /><br />
 
+---
+
+<br /><br />
 
 ## Production
 ### ⚙️➡️ Automatic Distribution Process (CI / CD)
