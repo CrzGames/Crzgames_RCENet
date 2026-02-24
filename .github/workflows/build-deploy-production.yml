@@ -41,11 +41,11 @@ jobs:
         - { runner: windows-2025, platform: windows,                             arch: x86, kind: static }     # Windows MSVC
         - { runner: windows-2025, platform: windows,                             arch: x64, kind: shared }     # Windows MSVC
         - { runner: windows-2025, platform: windows,                             arch: x64, kind: static }     # Windows MSVC
-        - { runner: windows-2025, platform: windows,                             arch: arm, kind: static }     # Windows MSVC
-        - { runner: windows-2025, platform: windows,                             arch: arm64, kind: shared }   # Windows MSVC
-        - { runner: windows-2025, platform: windows,                             arch: arm64, kind: static }   # Windows MSVC
-        - { runner: windows-2025, platform: windows,                             arch: arm64ec, kind: shared } # Windows MSVC
-        - { runner: windows-2025, platform: windows,                             arch: arm64ec, kind: static } # Windows MSVC
+        - { runner: windows-11-arm, platform: windows,                             arch: arm, kind: static }     # Windows MSVC
+        - { runner: windows-11-arm, platform: windows,                             arch: arm64, kind: shared }   # Windows MSVC
+        - { runner: windows-11-arm, platform: windows,                             arch: arm64, kind: static }   # Windows MSVC
+        - { runner: windows-11-arm, platform: windows,                             arch: arm64ec, kind: shared } # Windows MSVC
+        - { runner: windows-11-arm, platform: windows,                             arch: arm64ec, kind: static } # Windows MSVC
         - { runner: windows-2025, platform: mingw,                               arch: i386, msys_arch: i686, msys_msystem: mingw32, kind: static }     # Windows MinGW
         - { runner: windows-2025, platform: mingw,                               arch: x86_64, msys_arch: x86_64, msys_msystem: mingw64, kind: static } # Windows MinGW
         - { runner: ubuntu-22.04,   platform: linux,                               arch: i386, kind: shared }
