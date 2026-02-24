@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.5.0...v1.5.1) (2026-02-24)
+
+
+### Bug Fixes
+
+* Update Windows runner configurations in workflow ([717ecb9](https://github.com/CrzGames/Crzgames_RCENet/commit/717ecb9a64a18aa1670052d7e0d70f8dc3d93093))
+
 ## [1.5.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.4.6...v1.5.0) (2026-02-23)
 
 
