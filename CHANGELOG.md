@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.6.0...v1.6.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* fixed include path ([397589b](https://github.com/CrzGames/Crzgames_RCENet/commit/397589baec4e99ef1f6e837849c82f82e5b263f7))
+* fixed include path ([28e2567](https://github.com/CrzGames/Crzgames_RCENet/commit/28e25678e69b4a33a19b83bc043b1d2c84a402b7))
+
 ## [1.6.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.5.1...v1.6.0) (2026-02-27)
 
 
