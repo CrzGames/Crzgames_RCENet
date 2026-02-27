@@ -519,6 +519,7 @@ enet_peer_disconnect_now (ENetPeer * peer, enet_uint32 data)
       return;
 
     if (peer -> state != ENET_PEER_STATE_ZOMBIE &&
+        peer -> state != ENET_PEER_STATE_TIMEDOUT &&
         peer -> state != ENET_PEER_STATE_DISCONNECTING)
     {
         enet_peer_reset_queues (peer);

@@ -98,7 +98,7 @@ enet_packet_resize (ENetPacket * packet, size_t dataLength)
 
        enet_free (packet -> data);
     }
-    
+
     packet -> data = newData;
     packet -> dataLength = dataLength;
 

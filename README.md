@@ -12,13 +12,9 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 - IPv6 / IPv4
 - Cryptage / Décryptage (ENetEncryptor)
 - Ajout de ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
-- ENET_PROTOCOL_MAXIMUM_PEER_ID 4096 remplacé par 65535 pairs simultanés par hôte
-- PR pour les corrections qui n'ont jamais été appliquées à l'ENet d'origine et qui y sont incluse
 - Nouvelle documentation avec Vitepress
 - Nouvelle API
-- Ajout de nombreux commentaires dans les sources et les inclusions, dans le style JSDOC
 - Le protocole de la bibliothèque ENet d'origine a été modifié et ne fonctionnera donc pas avec le protocole d'origine
-- Autres améliorations et corrections
 
 <br /><br />
 

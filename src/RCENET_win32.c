@@ -484,14 +484,14 @@ enet_socket_receive (ENetSocket socket,
     {
        switch (WSAGetLastError())
        {
-        case WSAEWOULDBLOCK:
-        case WSAECONNRESET:
-            return 0;
-        case WSAEINTR:
-        case WSAEMSGSIZE:
-            return -2;
-        default:
-            return -1;
+       case WSAEWOULDBLOCK:
+       case WSAECONNRESET:
+          return 0;
+       case WSAEINTR:
+       case WSAEMSGSIZE:
+          return -2;
+       default:
+          return -1;
        }
     }
 
