@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.0](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.5.1...v1.6.0) (2026-02-27)
+
+
+### Features
+
+* get all files for enet to depot ([b20216b](https://github.com/CrzGames/Crzgames_RCENet/commit/b20216b4aa86f2a72b13e21ab8ae9e2cf37a7f07))
+* get all files for enet to depot ([d3a0519](https://github.com/CrzGames/Crzgames_RCENet/commit/d3a051942c7251973c858f27af64e21d20f08b4c))
+
 ## [1.5.1](https://github.com/CrzGames/Crzgames_RCENet/compare/v1.5.0...v1.5.1) (2026-02-24)
 
 
