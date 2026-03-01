@@ -261,7 +261,7 @@ jobs:
 
       - name: Upload artifacts Binary RCENet - All platforms (except macOS / iOS / tvOS)
         if: ${{ matrix.config.platform != 'tvos' && matrix.config.platform != 'ios' && matrix.config.platform != 'macos' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: librcenet-${{ matrix.config.platform }}${{ env.VARIANT_SUFFIX }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/
@@ -269,7 +269,7 @@ jobs:
 
       - name: Upload artifacts Binary RCENet - macOS
         if: ${{ matrix.config.platform == 'macos' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: librcenet-${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/x86_64-arm64/${{ matrix.config.kind }}
@@ -277,7 +277,7 @@ jobs:
 
       - name: Upload artifacts Binary RCENet - iOS (iphoneos)
         if: ${{ matrix.config.platform == 'ios' && matrix.config.sdk == 'iphoneos' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: librcenet-${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/arm64-arm64e/${{ matrix.config.kind }}
@@ -285,7 +285,7 @@ jobs:
           
       - name: Upload artifacts Binary RCENet - iOS (iphonesimulator)
         if: ${{ matrix.config.platform == 'ios' && matrix.config.sdk == 'iphonesimulator' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: librcenet-${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/x86_64-arm64/${{ matrix.config.kind }}
@@ -293,7 +293,7 @@ jobs:
 
       - name: Upload artifacts Binary RCENet - tvOS (appletvos / appletvsimulator)
         if: ${{ matrix.config.platform == 'tvos' }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: librcenet-${{ matrix.config.platform }}-${{ matrix.config.arch }}-${{ matrix.config.sdk }}-${{ matrix.mode }}-${{ matrix.config.kind }}
           path: rcenet/x86_64-arm64/${{ matrix.config.kind }}
