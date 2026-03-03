@@ -9,12 +9,114 @@ Dernier commit récupérer par rapport à ENet officiel, branche master : `657ea
 <br /><br />
 
 ## 📋 Grande nouveauté par rapport à ENet Original
-- IPv6 / IPv4
-- Cryptage / Décryptage (ENetEncryptor)
-- Ajout de ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
-- Nouvelle documentation avec Vitepress
-- Nouvelle API
-- Le protocole de la bibliothèque ENet d'origine a été modifié et ne fonctionnera donc pas avec le protocole d'origine
+### 🌍 Support IPv6 / IPv4
+
+Ajout du support complet **IPv6** en plus d'IPv4.\
+Permet l'utilisation sur réseaux modernes et améliore la compatibilité
+multi-plateformes.
+
+<br />
+
+---
+
+<br />
+
+### 🔐 Système de chiffrement intégré (ENetEncryptor)
+
+Ajout d'un mécanisme de chiffrement au niveau du `ENetHost`.
+
+``` c
+ENetEncryptor encryptor;
+```
+
+Un encryptor peut être enregistré via :
+
+``` c
+enet_host_encrypt(ENetHost* host, const ENetEncryptor* encryptor);
+```
+
+#### ⚙️ Fonctionnement
+
+-   Le chiffrement s'applique **après la compression** lors de l'envoie d'un packet UDP.
+-   Le déchiffrement s'applique **après réception d'un packet UDP**, puis décompress
+-   Les callbacks reçoivent le `ENetPeer` concerné
+-   L'encryptor peut produire un paquet plus volumineux que l'original
+
+#### 📦 Structure
+
+``` c
+typedef struct _ENetEncryptor
+{
+   void * context;
+   size_t (*encrypt)(...);
+   size_t (*decrypt)(...);
+   void (*destroy)(...);
+} ENetEncryptor;
+```
+
+#### 🎯 Cela permet
+
+-   🔹 d'intégrer AES, ChaCha20, etc.
+-   🔹 d'avoir un chiffrement par peer
+-   🔹 de contrôler entièrement la logique de sécurité
+-   🔹 d'activer/désactiver dynamiquement le chiffrement
+
+<br />
+
+---
+
+<br />
+
+### ⏱ Nouvel événement : ENET_EVENT_TYPE_DISCONNECT_TIMEOUT
+
+Ajout d'un événement distinct déclenché lorsqu'un pair est déconnecté
+suite à un timeout réseau.
+
+``` c
+ENET_EVENT_TYPE_DISCONNECT_TIMEOUT = 4
+```
+
+#### 🔎 Différence avec ENET_EVENT_TYPE_DISCONNECT
+
+  Événement            Déclenché quand
+  -------------------- -------------------------------------------------
+  DISCONNECT           Déconnexion propre via `enet_peer_disconnect()`
+  DISCONNECT_TIMEOUT   Perte de connexion / timeout réseau
+
+#### 🎯 Avantages
+
+-   🔹 Permet de distinguer une déconnexion volontaire d'une perte
+    réseau
+-   🔹 Simplifie la gestion serveur (reconnexion, pénalité, logs, etc.)
+-   🔹 Améliore la clarté des événements réseau
+
+<br />
+
+---
+
+<br />
+
+### 📦 Callback d'accusé de réception des paquets fiables
+
+Ajout du champ suivant dans `ENetPacket` :
+
+``` c
+ENetPacketAcknowledgedCallback acknowledgeCallback;
+```
+
+Ce callback est déclenché lorsque :
+
+-   Le paquet est fiable (`ENET_PACKET_FLAG_RELIABLE`)
+-   Tous ses fragments ont été accusés de réception
+-   `remainingFragments == 0`
+
+#### 🎯 Cela permet
+
+-   🔹 de savoir précisément quand un message fiable est confirmé côté
+    distant
+-   🔹 d'implémenter un système de promesse / confirmation réseau
+-   🔹 de mesurer la latence réelle par paquet
+-   🔹 de libérer des ressources uniquement après ACK réel
 
 <br /><br />
 
