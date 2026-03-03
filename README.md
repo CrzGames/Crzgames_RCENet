@@ -71,17 +71,16 @@ typedef struct _ENetEncryptor
 
 Ajout d'un événement distinct déclenché lorsqu'un pair est déconnecté
 suite à un timeout réseau.
-
 ``` c
 ENET_EVENT_TYPE_DISCONNECT_TIMEOUT = 4
 ```
 
 #### 🔎 Différence avec ENET_EVENT_TYPE_DISCONNECT
 
-  Événement            Déclenché quand
-  -------------------- -------------------------------------------------
-  DISCONNECT           Déconnexion propre via `enet_peer_disconnect()`
-  DISCONNECT_TIMEOUT   Perte de connexion / timeout réseau
+| Événement | Déclenché quand |
+|----------|---------|
+| **ENET_EVENT_TYPE_DISCONNECT** | Déconnexion propre via `enet_peer_disconnect()` |
+| **ENET_EVENT_TYPE_DISCONNECT_TIMEOUT** | Perte de connexion / timeout réseau |
 
 #### 🎯 Avantages
 
@@ -98,9 +97,10 @@ ENET_EVENT_TYPE_DISCONNECT_TIMEOUT = 4
 
 ### 📦 Callback d'accusé de réception des paquets fiables
 
-Ajout du champ suivant dans `ENetPacket` :
+Ajout des deux champ suivant dans la struct `ENetPacket` :
 
 ``` c
+enet_uint32                    remainingFragments;
 ENetPacketAcknowledgedCallback acknowledgeCallback;
 ```
 
@@ -108,7 +108,7 @@ Ce callback est déclenché lorsque :
 
 -   Le paquet est fiable (`ENET_PACKET_FLAG_RELIABLE`)
 -   Tous ses fragments ont été accusés de réception
--   `remainingFragments == 0`
+(`remainingFragments == 0`)
 
 #### 🎯 Cela permet
 
